@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PEARL DREAMS SAFARIS</title>
+<title>Pearl Dreams Safaris</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,11 +17,83 @@
     --dark:#1B1B1B;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,sans-serif;
+}
 
-body{background:var(--beige);color:var(--dark);}
+body{
+    background:var(--beige);
+    color:var(--dark);
+}
 
-/* HERO */
+/* ================= HEADER FIXED ================= */
+.top-header{
+    position:sticky;
+    top:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 15px;
+    background:linear-gradient(90deg,var(--green),var(--orange));
+    color:white;
+}
+
+.menu-btn{
+    font-size:22px;
+    cursor:pointer;
+    padding:6px 10px;
+    background:rgba(255,255,255,0.2);
+    border-radius:6px;
+}
+
+.top-header h1{
+    flex:1;
+    text-align:center;
+    font-size:20px;
+    white-space:nowrap;
+}
+
+.logo{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--gold);
+}
+
+@media(max-width:600px){
+    .top-header h1{font-size:16px;}
+    .logo{width:35px;height:35px;}
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:260px;
+    height:100%;
+    background:linear-gradient(var(--green),var(--orange));
+    padding:20px;
+    transition:0.4s;
+    z-index:9998;
+}
+.sidebar.open{left:0;}
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:10px;
+    margin:8px 0;
+    background:rgba(255,255,255,0.15);
+    border-radius:6px;
+}
+
+/* ================= HERO ================= */
 .hero{
     height:75vh;
     display:flex;
@@ -51,36 +123,45 @@ body{background:var(--beige);color:var(--dark);}
     font-weight:600;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 section{padding:60px 20px;}
 h2{text-align:center;color:var(--orange);margin-bottom:20px;}
 
-/* GRID */
-.destinations,.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    max-width:1100px;
+/* ================= SLIDERS ================= */
+.slider{
+    display:flex;
+    overflow:hidden;
+    max-width:900px;
     margin:auto;
 }
 
-.card{
+.slide{
+    min-width:100%;
     background:white;
     padding:20px;
     border-left:5px solid var(--gold);
-    border-radius:10px;
 }
 
-/* GALLERY */
-.gallery-item{
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-}
-.gallery-item img{width:100%;height:220px;object-fit:cover;}
-.gallery-item p{padding:10px;}
+.more{display:none;margin-top:10px;color:#444;}
 
-/* FORM */
+.slide button{
+    margin-top:10px;
+    padding:8px;
+    background:var(--green);
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* ================= GALLERY ================= */
+.gallery img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+/* ================= FORMS ================= */
 form{
     max-width:600px;
     margin:auto;
@@ -105,66 +186,102 @@ button{
     font-weight:bold;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer{
     background:var(--dark);
     color:white;
     text-align:center;
-    padding:30px;
+    padding:40px;
+}
+
+.social a{
+    display:block;
+    color:white;
+    margin:5px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER (FIXED LAYOUT) -->
+<header class="top-header">
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+    <h1>Pearl Dreams Safaris</h1>
+
+    <img src="logo.png" class="logo">
+
+</header>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <a href="#">Home</a>
+    <a href="#destinations">Destinations</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#booking">Booking</a>
+</div>
+
 <!-- HERO -->
 <div class="hero">
-    <div>
-        <h1>Discover East Africa</h1>
-        <p>Uganda • Kenya • Tanzania • Rwanda</p>
-        <a href="#booking" class="btn">Plan Your Safari</a>
-    </div>
+<div>
+<h1>Discover East Africa</h1>
+<p>Uganda • Kenya • Tanzania • Rwanda</p>
+<a href="#booking" class="btn">Plan Safari</a>
+</div>
 </div>
 
-<!-- DESTINATIONS -->
-<section>
+<!-- DESTINATIONS SLIDER -->
+<section id="destinations">
 <h2>Top Destinations</h2>
-<div class="destinations">
-<div class="card">Uganda 🦍 Gorilla Trekking</div>
-<div class="card">Kenya 🦁 Big Five Safari</div>
-<div class="card">Tanzania 🌋 Serengeti Migration</div>
-<div class="card">Rwanda 🌿 Mountain Experience</div>
+
+<div class="slider" id="destSlider">
+<div class="slide">
+<h3>Uganda 🦍</h3>
+<p>Gorilla Trekking</p>
+<div class="more">Bwindi forest experience with mountain gorillas.</div>
+<button onclick="toggleMore(this)">Read More</button>
+</div>
+
+<div class="slide">
+<h3>Kenya 🦁</h3>
+<p>Masai Mara Safari</p>
+<div class="more">Big Five wildlife migration experience.</div>
+<button onclick="toggleMore(this)">Read More</button>
+</div>
+
+<div class="slide">
+<h3>Tanzania 🌋</h3>
+<p>Serengeti</p>
+<div class="more">Endless plains and Kilimanjaro views.</div>
+<button onclick="toggleMore(this)">Read More</button>
+</div>
 </div>
 </section>
 
-<!-- GALLERY -->
-<section>
+<!-- GALLERY SLIDER -->
+<section id="gallery">
 <h2>Safari Gallery</h2>
-<div class="gallery">
 
-<div class="gallery-item">
+<div class="slider" id="gallerySlider">
+<div class="slide">
 <img src="3b9198fe-0483-40fa-8c7d-fb7706cdde46.jpeg">
-<p>Giraffes in the wild savannah.</p>
 </div>
-
-<div class="gallery-item">
+<div class="slide">
 <img src="36f95f26-015b-4c1b-8a22-cfe14fe0bd13.jpeg">
-<p>Professional safari guiding team.</p>
 </div>
-
-<div class="gallery-item">
+<div class="slide">
 <img src="7320a1c5-07e1-46a4-9658-1c8a209a1e8e.jpeg">
-<p>Leopard resting in a tree.</p>
 </div>
-
 </div>
 </section>
 
-<!-- REVIEWS (FIREBASE) -->
+<!-- REVIEWS -->
 <section>
 <h2>Customer Reviews</h2>
 
-<input id="reviewName" placeholder="Your Name">
+<input id="reviewName" placeholder="Name">
 <select id="reviewRating">
 <option value="5">⭐⭐⭐⭐⭐</option>
 <option value="4">⭐⭐⭐⭐</option>
@@ -173,108 +290,88 @@ footer{
 <option value="1">⭐</option>
 </select>
 
-<textarea id="reviewComment" placeholder="Write review"></textarea>
-<button onclick="submitReview()">Submit Review</button>
+<textarea id="reviewComment" placeholder="Review"></textarea>
+<button onclick="submitReview()">Submit</button>
 
-<div id="reviewsContainer"></div>
+<div class="slider" id="reviewsSlider"></div>
 </section>
 
 <!-- BOOKING -->
 <section id="booking">
-<h2>Safari Booking</h2>
-
+<h2>Booking</h2>
 <form id="bookingForm">
-<input type="text" name="name" placeholder="Full Name" required>
-<input type="email" name="email" placeholder="Email" required>
-<input type="tel" name="phone" placeholder="Phone" required>
-<textarea name="message" placeholder="Travel details" required></textarea>
-<button type="submit">Send Booking</button>
+<input name="name" placeholder="Name">
+<input name="email" placeholder="Email">
+<input name="phone" placeholder="Phone">
+<textarea name="message" placeholder="Details"></textarea>
+<button type="submit">Send</button>
 </form>
 </section>
 
-<!-- FIREBASE + EMAILJS -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs,
-query,
-orderBy
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<!-- FOOTER -->
+<footer>
+<h3>Pearl Dreams Safaris</h3>
 
-/* ================= FIREBASE CONFIG ================= */
-const firebaseConfig = {
-apiKey: "YOUR_FIREBASE_API_KEY",
-authDomain: "pearl-dreams-safaris.firebaseapp.com",
-projectId: "pearl-dreams-safaris",
-storageBucket: "pearl-dreams-safaris.appspot.com",
-messagingSenderId: "856441091870",
-appId: "1:856441091870:web:100e4a11e6abb36e88fb0f"
-};
+<h4>Payment Methods</h4>
+<p>MTN Mobile Money</p>
+<p>Airtel Money</p>
+<p>Visa / Mastercard</p>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+<h4>Follow Us</h4>
+<div class="social">
+<a href="https://facebook.com">Facebook</a>
+<a href="https://instagram.com">Instagram</a>
+<a href="https://tiktok.com">TikTok</a>
+<a href="https://x.com">X (Twitter)</a>
+</div>
 
-/* ================= REVIEWS ================= */
-window.submitReview = async function () {
-const name = document.getElementById("reviewName").value;
-const rating = document.getElementById("reviewRating").value;
-const comment = document.getElementById("reviewComment").value;
+<p>📍 Kampala, Uganda</p>
+<p>📞 +256 770 462 422</p>
+</footer>
 
-await addDoc(collection(db,"reviews"),{
-name,rating,comment,createdAt:Date.now()
-});
-
-loadReviews();
-};
-
-async function loadReviews(){
-const box = document.getElementById("reviewsContainer");
-box.innerHTML="";
-
-const q = query(collection(db,"reviews"),orderBy("createdAt","desc"));
-const snap = await getDocs(q);
-
-snap.forEach(doc=>{
-const d = doc.data();
-box.innerHTML += `
-<div style="background:#fff;padding:10px;margin:10px;border-left:4px solid #D4AF37">
-<b>${d.name}</b><br>
-${"⭐".repeat(d.rating)}<br>
-${d.comment}
-</div>`;
-});
-}
-loadReviews();
-
-/* ================= EMAILJS ================= */
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
+<!-- SCRIPT -->
 <script>
-emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+function toggleMenu(){
+document.getElementById("sidebar").classList.toggle("open");
+}
 
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-e.preventDefault();
+/* DEST SLIDER */
+let d=0;
+setInterval(()=>{
+let s=document.querySelectorAll("#destSlider .slide");
+d=(d+1)%s.length;
+document.getElementById("destSlider").style.transform=`translateX(-${d*100}%)`;
+},4000);
 
-emailjs.sendForm(
-"service_7zd9d3k",
-"template_ujlcl24",
-this
-).then(() => {
+/* GALLERY */
+let g=0;
+setInterval(()=>{
+let s=document.querySelectorAll("#gallerySlider .slide");
+g=(g+1)%s.length;
+document.getElementById("gallerySlider").style.transform=`translateX(-${g*100}%)`;
+},3500);
 
-alert("Booking sent successfully!");
+/* READ MORE */
+function toggleMore(btn){
+let m=btn.previousElementSibling;
+m.style.display = m.style.display==="block"?"none":"block";
+btn.innerText=m.style.display==="block"?"Show Less":"Read More";
+}
 
-window.open(
-"https://wa.me/256770462422?text=New%20Safari%20Booking",
-"_blank"
-);
+/* REVIEWS */
+function submitReview(){
+let box=document.getElementById("reviewsSlider");
+let name=document.getElementById("reviewName").value;
+let rating=document.getElementById("reviewRating").value;
+let comment=document.getElementById("reviewComment").value;
 
-});
-});
+box.innerHTML+=`
+<div class="slide">
+<h3>${name}</h3>
+<p>${"⭐".repeat(rating)}</p>
+<p>${comment}</p>
+</div>`;
+}
 </script>
 
 </body>
