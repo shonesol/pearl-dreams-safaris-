@@ -11,9 +11,7 @@
 <!-- EMAILJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function(){
-    emailjs.init("YOUR_PUBLIC_KEY");
-  })();
+  emailjs.init("YOUR_PUBLIC_KEY");
 </script>
 
 <style>
@@ -50,9 +48,13 @@ header{
     z-index:1000;
 }
 
+/* MENU BUTTON */
 .menu{
-    font-size:24px;
+    font-size:26px;
     cursor:pointer;
+    padding:5px 10px;
+    background:rgba(255,255,255,0.2);
+    border-radius:6px;
 }
 
 .logo{
@@ -64,8 +66,8 @@ header{
 /* SIDEBAR */
 .sidebar{
     position:fixed;
-    left:-260px;
     top:0;
+    left:-260px;
     width:250px;
     height:100%;
     background:linear-gradient(var(--green),var(--orange));
@@ -74,25 +76,36 @@ header{
     z-index:2000;
 }
 
+.sidebar.open{left:0;}
+
 .sidebar a{
     display:block;
     color:white;
-    padding:10px;
-    margin:8px 0;
     text-decoration:none;
+    padding:12px;
+    margin:8px 0;
     background:rgba(255,255,255,0.15);
     border-radius:6px;
+    font-weight:600;
 }
 
-.sidebar.open{left:0;}
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    z-index:1500;
+}
+.overlay.show{display:block;}
 
 /* HERO */
 .hero{
-    height:70vh;
+    height:60vh;
     background:url("0aff6cce-daf8-4817-87db-92309cc022ba.jpeg") center/cover;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     text-align:center;
     color:white;
     position:relative;
@@ -114,30 +127,18 @@ header{
     color:white;
     border-radius:30px;
     text-decoration:none;
+    font-weight:bold;
 }
 
 /* SECTIONS */
-section{padding:50px 20px;}
-h2{text-align:center;color:var(--orange);margin-bottom:20px;}
-
-/* SLIDER */
-.slider{
-    display:flex;
-    overflow:hidden;
-    max-width:900px;
-    margin:auto;
+section{
+    padding:40px 20px;
 }
 
-.track{
-    display:flex;
-    transition:0.5s ease;
-}
-
-.slide{
-    min-width:100%;
-    background:white;
-    padding:20px;
-    border-left:5px solid var(--gold);
+h2{
+    text-align:center;
+    color:var(--orange);
+    margin-bottom:20px;
 }
 
 /* FORM */
@@ -152,8 +153,9 @@ form{
 input,textarea,select{
     width:100%;
     padding:10px;
-    margin-top:10px;
+    margin:8px 0;
     border:1px solid #ddd;
+    border-radius:6px;
 }
 
 button{
@@ -165,77 +167,81 @@ button{
     color:white;
     font-weight:bold;
     border-radius:6px;
+    cursor:pointer;
 }
 
-/* SOCIAL */
-.social-icons{
+/* REVIEWS */
+.slide{
+    background:white;
+    padding:10px;
+    margin:10px 0;
+    border-left:5px solid var(--gold);
+}
+  .social-icons{
     display:flex;
     justify-content:center;
-    gap:15px;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
-.social-icons i{
+.social-icons a{
+    text-decoration:none;
     font-size:30px;
-    color:var(--green);
+    color:#2E7D32;
+    background:white;
+    padding:12px;
+    border-radius:50%;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
     transition:0.3s;
 }
 
-.social-icons i:hover{
-    color:var(--gold);
+.social-icons a:hover{
     transform:scale(1.2);
+    color:#F57C00;
+}
+  .payment-icons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    font-size:40px;
+    color:#1B1B1B;
+    margin-top:10px;
 }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:30px;
-    background:var(--dark);
-    color:white;
+.payment-icons i{
+    background:white;
+    padding:12px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.payment-icons i:hover{
+    transform:scale(1.1);
+    color:#F57C00;
 }
 </style>
-  <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// expose globally
-window.db = db;
-window.addDoc = addDoc;
-window.collection = collection;
-    emailjs.send("SERVICE_ID", "TEMPLATE_ID", booking);
-</script>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-emailjs.init("YOUR_PUBLIC_KEY");
-</script>
-  
 </head>
 
 <body>
 
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
-    <a href="#home">Home</a>
-    <a href="#destinations">Destinations</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#booking">Booking</a>
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#destinations" onclick="toggleMenu()">Destinations</a>
+    <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+    <a href="#booking" onclick="toggleMenu()">Booking</a>
+    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
 </div>
 
 <!-- HEADER -->
 <header>
     <div class="menu" onclick="toggleMenu()">☰</div>
-    <h3>Pearl Dreams</h3>
+    <h3>Pearl Dreams Safaris</h3>
     <img src="logo.png" class="logo">
 </header>
 
@@ -248,53 +254,22 @@ emailjs.init("YOUR_PUBLIC_KEY");
     </div>
 </div>
 
-<!-- DESTINATIONS -->
-<section id="destinations">
-<h2>Top Destinations</h2>
-
-<div class="slider">
-<div class="track" id="destTrack">
-
-<div class="slide">🦍 Bwindi Gorilla Trekking</div>
-<div class="slide">🐘 Maasai Mara Migration</div>
-<div class="slide">🦓 Serengeti Plains</div>
-<div class="slide">🦍 Volcanoes Rwanda</div>
-
-</div>
-</div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-<h2>Gallery</h2>
-
-<div class="slider">
-<div class="track" id="galleryTrack">
-
-<div class="slide"><img src="3b9198fe-0483-40fa-8c7d-fb7706cdde46.jpeg" width="100%"></div>
-<div class="slide"><img src="36f95f26-015b-4c1b-8a22-cfe14fe0bd13.jpeg" width="100%"></div>
-<div class="slide"><img src="7320a1c5-07e1-46a4-9658-1c8a209a1e8e.jpeg" width="100%"></div>
-
-</div>
-</div>
-</section>
-
 <!-- BOOKING -->
 <section id="booking">
-<h2>Booking</h2>
+<h2>Book Safari</h2>
 
 <form id="bookingForm">
-<input name="name" placeholder="Full Name" required>
+<input name="name" placeholder="Name" required>
 <input name="email" placeholder="Email" required>
 <input name="phone" placeholder="Phone" required>
-<textarea name="message" placeholder="Safari details..." required></textarea>
+<textarea name="message" placeholder="Safari details" required></textarea>
 
 <button type="submit">Send Booking</button>
 </form>
 </section>
 
 <!-- REVIEWS -->
-<section>
+<section id="reviews">
 <h2>Reviews</h2>
 
 <input id="rName" placeholder="Name">
@@ -303,116 +278,78 @@ emailjs.init("YOUR_PUBLIC_KEY");
 <option value="4">⭐⭐⭐⭐</option>
 <option value="3">⭐⭐⭐</option>
 </select>
-<textarea id="rComment" placeholder="Review"></textarea>
+
+<textarea id="rComment" placeholder="Write review"></textarea>
 
 <button onclick="submitReview()">Submit Review</button>
 
 <div id="reviewBox"></div>
-</section>
 
-<!-- SOCIAL -->
-<section>
-<h2>Connect</h2>
+<footer>
+  <section id="contact">
+<h2>Contact Us</h2>
+<div style="text-align:center; max-width:600px; margin:auto; background:white; padding:20px; border-radius:10px;">
+<p>📍 Kampala, Uganda</p>
+<p>📞 +256 702 094 292</p>
+<p>📧 pearldreamssafaris@gmail.com</p>
+<p> www.pearldreamssafaris.com</p>
 
-<div class="social-icons">
-<a href="https://wa.me/256702094292"><i class="fab fa-whatsapp"></i></a>
-<a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
-<a href="https://facebook.com"><i class="fab fa-facebook"></i></a>
 </div>
 </section>
+  <section id="social">
+<h2>Follow Us</h2>
 
-<!-- FOOTER -->
-<footer>
-<p>&copy; <span id="year"></span> Pearl Dreams Safaris</p>
+<div class="social-icons">
+    <a href="https://wa.me/256702094292" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>  
+</section>
+  </section>
+  <section id="payments">
+<h2>Secure Payment Methods</h2>
+
+<div class="payment-icons">
+    <i class="fab fa-cc-visa"></i>
+    <i class="fab fa-cc-mastercard"></i>
+    <i class="fab fa-paypal"></i>
+    <i class="fab fa-apple-pay"></i>
+    <i class="fab fa-google-pay"></i>
+</div>
+
+<p style="text-align:center; max-width:600px; margin:auto;">
+We accept Visa, Mastercard, PayPal, Apple Pay and Google Pay for safe and secure bookings worldwide.
+</p>
+</section>
 </footer>
+<!-- FIREBASE -->
+<script type="module">
 
-<script>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-// MENU
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("open");
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyAm3w6yrzOWzNpqNgKpGqjwaweqJaC0sXo",
+  authDomain: "pearldreamssafaris-ab35b.firebaseapp.com",
+  projectId: "pearldreamssafaris-ab35b",
+  storageBucket: "pearldreamssafaris-ab35b.appspot.com",
+  messagingSenderId: "732800395999",
+  appId: "1:732800395999:web:b93c91810ec5d8c48ad76a"
+};
 
-// YEAR
-document.getElementById("year").innerText = new Date().getFullYear();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
+window.db = db;
+window.addDoc = addDoc;
+window.collection = collection;
 
-// EMAILJS BOOKING
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-    e.preventDefault();
+const whatsappNumber = "256702094292";
 
-    let data = this;
-
-    emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
-        name:data.name.value,
-        email:data.email.value,
-        phone:data.phone.value,
-        message:data.message.value
-    });
-
-    let msg = `Booking:
-Name:${data.name.value}
-Email:${data.email.value}
-Phone:${data.phone.value}
-Message:${data.message.value}`;
-
-    window.open("https://wa.me/256702094292?text=" + encodeURIComponent(msg));
-
-    alert("Booking sent!");
-});
-
-
-// REVIEWS
-function submitReview(){
-
-    let name = document.getElementById("rName").value;
-    let rating = document.getElementById("rRating").value;
-    let comment = document.getElementById("rComment").value;
-
-    document.getElementById("reviewBox").innerHTML += `
-        <div class="slide">
-            <h3>${name}</h3>
-            <p>${"⭐".repeat(rating)}</p>
-            <p>${comment}</p>
-        </div>
-    `;
-
-    emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
-        name:name,
-        rating:rating,
-        comment:comment
-    });
-
-    let msg = `Review:
-Name:${name}
-Rating:${rating}
-Comment:${comment}`;
-
-    window.open("https://wa.me/256702094292?text=" + encodeURIComponent(msg));
-}
-
-
-// SLIDERS
-function autoSlide(id){
-    let track = document.getElementById(id);
-    let index = 0;
-
-    setInterval(()=>{
-        index++;
-        if(index >= track.children.length) index = 0;
-        track.style.transform = `translateX(-${index * 100}%)`;
-    },3000);
-}
-
-autoSlide("destTrack");
-autoSlide("galleryTrack");
-
-</script>
-<script>
-// WhatsApp number (change to yours)
-const whatsappNumber = "256770462422";
-
-document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+/* BOOKING */
+document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
     e.preventDefault();
 
     const form = e.target;
@@ -426,33 +363,82 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
     };
 
     try {
-        // 1. Save to Firebase
         await addDoc(collection(db, "bookings"), booking);
 
-        // 2. Send WhatsApp message
-        const whatsappMsg =
-`New Safari Booking:
-Name: ${booking.name}
-Email: ${booking.email}
-Phone: ${booking.phone}
-Message: ${booking.message}`;
+        emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+            name: booking.name,
+            email: booking.email,
+            phone: booking.phone,
+            message: booking.message,
+            to_email: "pearldreamssafaris@gmail.com"
+        });
 
         window.open(
-`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`,
-"_blank"
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                `NEW BOOKING\n${booking.name}\n${booking.phone}\n${booking.message}`
+            )}`
         );
 
-        // 3. EmailJS (optional)
-        // emailjs.send("service_id","template_id",booking);
-
-        alert("Booking sent successfully!");
+        alert("Booking sent!");
         form.reset();
 
-    } catch (error) {
-        console.error(error);
-        alert("Error sending booking!");
+    } catch(err){
+        alert("Error sending booking");
     }
 });
+
+/* REVIEWS */
+window.submitReview = async function(){
+
+    const name = document.getElementById("rName").value;
+    const rating = document.getElementById("rRating").value;
+    const comment = document.getElementById("rComment").value;
+
+    if(!name || !comment){
+        alert("Fill all fields");
+        return;
+    }
+
+    const review = {
+        name,
+        rating,
+        comment,
+        date: new Date().toISOString()
+    };
+
+    try {
+        await addDoc(collection(db, "reviews"), review);
+
+        document.getElementById("reviewBox").innerHTML += `
+            <div class="slide">
+                <b>${name}</b><br>
+                ${"⭐".repeat(rating)}<br>
+                ${comment}
+            </div>
+        `;
+
+        emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", review);
+
+        window.open(
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                `NEW REVIEW\n${name}\n${rating} stars\n${comment}`
+            )}`
+        );
+
+        alert("Review submitted!");
+
+    } catch(err){
+        alert("Error saving review");
+    }
+};
+
+/* MENU */
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("open");
+    document.getElementById("overlay").classList.toggle("show");
+}
+
 </script>
+
 </body>
 </html>
