@@ -502,8 +502,30 @@ footer .payment-icons i:hover{
 
 </footer>
 <!-- FIREBASE -->
-<script type="module">
+<script>
+// ================= MENU FIX (CLEAN & SAFE) =================
+function toggleMenu(){
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
 
+    sidebar.classList.toggle("open");
+    overlay.classList.toggle("show");
+}
+
+// Close menu when clicking links
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".sidebar a");
+
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+            document.getElementById("sidebar").classList.remove("open");
+            document.getElementById("overlay").classList.remove("show");
+        });
+    });
+});
+
+
+// ================= FIREBASE (SAFE INIT) =================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
@@ -519,14 +541,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// expose globally
 window.db = db;
 window.addDoc = addDoc;
 window.collection = collection;
 
+
+// ================= BOOKING =================
 const whatsappNumber = "256702094292";
 
-/* BOOKING */
-document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
+const bookingForm = document.getElementById("bookingForm");
+
+if (bookingForm) {
+bookingForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
 
     const form = e.target;
@@ -542,17 +569,9 @@ document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
     try {
         await addDoc(collection(db, "bookings"), booking);
 
-        emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
-            name: booking.name,
-            email: booking.email,
-            phone: booking.phone,
-            message: booking.message,
-            to_email: "pearldreamssafaris@gmail.com"
-        });
-
         window.open(
             `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                `NEW BOOKING\n${booking.name}\n${booking.phone}\n${booking.message}`
+                `NEW BOOKING\nName: ${booking.name}\nPhone: ${booking.phone}\nMessage: ${booking.message}`
             )}`
         );
 
@@ -560,11 +579,14 @@ document.getElementById("bookingForm").addEventListener("submit", async (e)=>{
         form.reset();
 
     } catch(err){
+        console.error(err);
         alert("Error sending booking");
     }
 });
+}
 
-/* REVIEWS */
+
+// ================= REVIEWS =================
 window.submitReview = async function(){
 
     const name = document.getElementById("rName").value;
@@ -594,8 +616,6 @@ window.submitReview = async function(){
             </div>
         `;
 
-        emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", review);
-
         window.open(
             `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
                 `NEW REVIEW\n${name}\n${rating} stars\n${comment}`
@@ -605,76 +625,17 @@ window.submitReview = async function(){
         alert("Review submitted!");
 
     } catch(err){
+        console.error(err);
         alert("Error saving review");
     }
 };
 
-/* MENU */
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("open");
-    document.getElementById("overlay").classList.toggle("show");
-}
-  document.querySelectorAll(".sidebar a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("sidebar").classList.remove("open");
-        document.getElementById("overlay").classList.remove("show");
-    });
-});
-  </script>
-  <script>
-    let currentSlide = 0;
-const track = document.getElementById("heroSlider");
-const dots = document.querySelectorAll(".dots span");
 
-function updateSlider(){
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    dots.forEach(d => d.classList.remove("active"));
-    dots[currentSlide].classList.add("active");
-}
-
-function goSlide(index){
-    currentSlide = index;
-    updateSlider();
-}
-
-// AUTO SLIDE
-setInterval(() => {
-    currentSlide++;
-    if(currentSlide >= 3) currentSlide = 0;
-    updateSlider();
-}, 3500);
-
-// SWIPE (mobile)
-let startX = 0;
-
-track.addEventListener("touchstart", (e)=>{
-    startX = e.touches[0].clientX;
-});
-
-track.addEventListener("touchend", (e)=>{
-    let endX = e.changedTouches[0].clientX;
-
-    if(startX > endX + 50){
-        currentSlide = (currentSlide + 1) % 3;
-    } else if(startX < endX - 50){
-        currentSlide = (currentSlide - 1 + 3) % 3;
-    }
-
-    updateSlider();
-});
-
-// init
-updateSlider();
-  </script>
-  <script>
-    // AUTO YEAR IN FOOTER
+// ================= FOOTER YEAR =================
 window.addEventListener("DOMContentLoaded", () => {
-    const yearElement = document.getElementById("year");
-    if (yearElement) {
-        yearElement.innerText = new Date().getFullYear();
-    }
+    const year = document.getElementById("year");
+    if (year) year.innerText = new Date().getFullYear();
 });
-  </script>
+</script>
 </body>
 </html>
