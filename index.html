@@ -15,6 +15,7 @@
 </script>
 
 <style>
+  
 :root{
     --green:#2E7D32;
     --orange:#F57C00;
@@ -22,7 +23,10 @@
     --beige:#FFF8E6;
     --dark:#1B1B1B;
 }
-
+html, body{
+    width:100%;
+    overflow-x:hidden;
+}
 *{
     margin:0;
     padding:0;
@@ -275,15 +279,22 @@ button{
     background:#F57C00;
 }
   footer{
-    background:linear-gradient(135deg,#0D47A1,#1565C0,#1E88E5);
+    width:100%;
+    background:#2f2f2f;
     color:white;
     padding:40px 20px;
     text-align:center;
     margin-top:40px;
+    box-sizing:border-box;
 }
 
 .footer-section{
     margin-bottom:30px;
+}
+  footer .footer-section,
+footer p{
+    max-width:100%;
+    margin:0 auto;
 }
 
 .footer-section h2{
