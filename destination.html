@@ -1,283 +1,614 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pearl Dreams Safaris</title>
 
-<title>Pearl Dreams Safaris - Destinations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+:root{
+    --green:#2E7D32;
+    --orange:#F57C00;
+    --gold:#D4AF37;
+    --beige:#FFF8E6;
+    --dark:#1B1B1B;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter,sans-serif;
+}
 
 body{
-
-    font-family:Arial,sans-serif;
-
-    margin:0;
-
-    background:#f3f4f6;
-
+    background:var(--beige);
+    color:var(--dark);
 }
 
-header{
-
-    background:#2563eb;
-
+/* ================= HEADER FIXED ================= */
+.top-header{
+    position:sticky;
+    top:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 15px;
+    background:linear-gradient(90deg,var(--green),var(--orange));
     color:white;
+}
 
-    padding:25px;
+.menu-btn{
+    font-size:22px;
+    cursor:pointer;
+    padding:6px 10px;
+    background:rgba(255,255,255,0.2);
+    border-radius:6px;
+}
 
+.top-header h1{
+    flex:1;
     text-align:center;
-
+    font-size:20px;
+    white-space:nowrap;
 }
 
-.container{
+.logo{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--gold);
+}
 
-    max-width:1200px;
+@media(max-width:600px){
+    .top-header h1{font-size:16px;}
+    .logo{width:35px;height:35px;}
+}
 
-    margin:auto;
-
+/* ================= SIDEBAR ================= */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:260px;
+    height:100%;
+    background:linear-gradient(var(--green),var(--orange));
     padding:20px;
-
+    transition:0.4s;
+    z-index:9999;
+     overflow-y:auto;
 }
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-
-    gap:20px;
-
+.sidebar.open{left:0;}
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:10px;
+    margin:8px 0;
+    background:rgba(255,255,255,0.15);
+    border-radius:6px;
 }
-
-.card{
-
-    background:white;
-
-    padding:20px;
-
-    border-radius:12px;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
-
+.sidebar a{
+    color:#fff;
+    font-weight:600;
 }
-
-.card h2{
-
-    color:#2563eb;
-
+/* ================= HERO ================= */
+.hero{
+    height:75vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+    background:url("0aff6cce-daf8-4817-87db-92309cc022ba.jpeg") center/cover;
+    position:relative;
 }
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+}
+.hero div{position:relative;z-index:2;}
+.hero h1{font-size:3rem;}
 
 .btn{
-
     display:inline-block;
-
-    background:#2563eb;
-
+    padding:12px 22px;
+    border-radius:30px;
+    background:linear-gradient(90deg,var(--green),var(--orange));
     color:white;
-
     text-decoration:none;
+    font-weight:600;
+}
 
-    padding:10px 16px;
+/* ================= SECTIONS ================= */
+section{padding:60px 20px;}
+h2{text-align:center;color:var(--orange);margin-bottom:20px;}
 
-    border-radius:8px;
+/* ================= SLIDERS ================= */
+.slider{
+    display:flex;
+    overflow:hidden;
+    max-width:900px;
+    margin:auto;
+}
 
+.slide{
+    min-width:100%;
+    background:white;
+    padding:20px;
+    border-left:5px solid var(--gold);
+}
+
+.more{display:none;margin-top:10px;color:#444;}
+
+.slide button{
+    margin-top:10px;
+    padding:8px;
+    background:var(--green);
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* ================= GALLERY ================= */
+/* ===== IMAGE GALLERY FIX ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 140px;          /* controls size */
+    object-fit: cover;     /* keeps nice crop */
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* ================= FORMS ================= */
+form{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    background:linear-gradient(90deg,var(--green),var(--orange));
+    color:white;
+    font-weight:bold;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.social a{
+    display:block;
+    color:white;
+    margin:5px;
+}
+    img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+    .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: auto;
+}
+  .social-icons a i{
+    font-size: 40px;
+    transition: 0.3s ease;
+      display: grid;
+  
+    
+}
+
+.social-icons a:hover i{
+    transform: scale(1.2);
+    color: var(--gold);
+}
+    .payment-icons i{
+    font-size: 40px;   /* increase size here */
+    margin: 6px;
+    transition: 0.3s ease;
+        display: grid;
+    
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header>
+<!-- HEADER (FIXED LAYOUT) -->
+<header class="top-header">
 
-    <h1>East Africa Safari Destinations</h1>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-    <p>Pearl Dreams Safaris</p>
+    <h1>Pearl Dreams Safaris</h1>
+
+    <img src="logo.png" class="logo">
 
 </header>
 
-<div class="container">
-
-<div class="grid">
-  <div class="park-card">
-  <h2>🇺🇬 Bwindi Impenetrable National Park</h2>
-  <p><strong>Location:</strong> Southwestern Uganda</p>
-  <p><strong>Size:</strong> 331 km²</p>
-  <p><strong>Animals:</strong> Mountain gorillas, chimpanzees, forest elephants, monkeys.</p>
-  <p>World-famous for mountain gorilla trekking and rich rainforest biodiversity.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <a href="#" onclick="scrollToTop()">🏠 Back to Home</a>
+    <a href="#">Home</a>
+    <a href="destinations.html">Destinations</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="booking.html">Booking</a>
+    <a href="services.html">services</a>
+    <a href="itinerary.html">Itinerary</a>
+    <a href="trips.html">Gallery</a>
+    <a href="about.html">Booking</a>
+        <a href="contact.html">services</a>
+    <a href="terms.html">Destinations</a>
+    <a href="privacy.html">Gallery</a>
+    <a href="about.html">Booking</a>
 </div>
 
-<div class="park-card">
-  <h2>🇺🇬 Murchison Falls National Park</h2>
-  <p><strong>Location:</strong> Northwestern Uganda</p>
-  <p><strong>Size:</strong> 3,893 km²</p>
-  <p><strong>Animals:</strong> Lions, elephants, giraffes, buffaloes, hippos, crocodiles.</p>
-  <p>Uganda's largest national park and home to the mighty Murchison Falls.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇺🇬 Queen Elizabeth National Park</h2>
-  <p><strong>Location:</strong> Western Uganda</p>
-  <p><strong>Size:</strong> 1,978 km²</p>
-  <p><strong>Animals:</strong> Tree-climbing lions, elephants, leopards, hippos, chimpanzees.</p>
-  <p>One of East Africa's most diverse wildlife destinations.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇺🇬 Kibale National Park</h2>
-  <p><strong>Location:</strong> Western Uganda</p>
-  <p><strong>Size:</strong> 795 km²</p>
-  <p><strong>Animals:</strong> Chimpanzees, red colobus monkeys, baboons.</p>
-  <p>Known as the primate capital of East Africa.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇺🇬 Kidepo Valley National Park</h2>
-  <p><strong>Location:</strong> Northeastern Uganda</p>
-  <p><strong>Size:</strong> 1,442 km²</p>
-  <p><strong>Animals:</strong> Lions, cheetahs, elephants, ostriches, buffaloes.</p>
-  <p>One of Africa's most remote and beautiful safari parks.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇰🇪 Maasai Mara National Reserve</h2>
-  <p><strong>Location:</strong> Southwestern Kenya</p>
-  <p><strong>Size:</strong> 1,510 km²</p>
-  <p><strong>Animals:</strong> Big Five, wildebeests, zebras, cheetahs.</p>
-  <p>Home to the Great Wildebeest Migration.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇰🇪 Amboseli National Park</h2>
-  <p><strong>Location:</strong> Southern Kenya</p>
-  <p><strong>Size:</strong> 392 km²</p>
-  <p><strong>Animals:</strong> Elephants, lions, giraffes, zebras.</p>
-  <p>Famous for elephant herds and views of Mount Kilimanjaro.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇰🇪 Tsavo East National Park</h2>
-  <p><strong>Location:</strong> Eastern Kenya</p>
-  <p><strong>Size:</strong> 13,747 km²</p>
-  <p><strong>Animals:</strong> Red elephants, lions, buffaloes.</p>
-  <p>One of Kenya's largest and oldest national parks.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇰🇪 Lake Nakuru National Park</h2>
-  <p><strong>Location:</strong> Central Kenya</p>
-  <p><strong>Size:</strong> 188 km²</p>
-  <p><strong>Animals:</strong> Rhinos, lions, flamingos, giraffes.</p>
-  <p>Known worldwide for birdlife and rhino conservation.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇹🇿 Serengeti National Park</h2>
-  <p><strong>Location:</strong> Northern Tanzania</p>
-  <p><strong>Size:</strong> 14,763 km²</p>
-  <p><strong>Animals:</strong> Lions, cheetahs, leopards, wildebeests, zebras.</p>
-  <p>One of the most famous safari destinations on Earth.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇹🇿 Ngorongoro Conservation Area</h2>
-  <p><strong>Location:</strong> Northern Tanzania</p>
-  <p><strong>Size:</strong> 8,292 km²</p>
-  <p><strong>Animals:</strong> Black rhinos, lions, elephants, buffaloes.</p>
-  <p>Home to the spectacular Ngorongoro Crater.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇹🇿 Tarangire National Park</h2>
-  <p><strong>Location:</strong> Northern Tanzania</p>
-  <p><strong>Size:</strong> 2,850 km²</p>
-  <p><strong>Animals:</strong> Elephants, lions, leopards, zebras.</p>
-  <p>Known for giant baobab trees and elephant herds.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇹🇿 Lake Manyara National Park</h2>
-  <p><strong>Location:</strong> Northern Tanzania</p>
-  <p><strong>Size:</strong> 325 km²</p>
-  <p><strong>Animals:</strong> Tree-climbing lions, elephants, flamingos.</p>
-  <p>A beautiful park with forests, lake shores and wildlife.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇹🇿 Ruaha National Park</h2>
-  <p><strong>Location:</strong> Central Tanzania</p>
-  <p><strong>Size:</strong> 20,226 km²</p>
-  <p><strong>Animals:</strong> Lions, elephants, wild dogs, leopards.</p>
-  <p>Tanzania's largest national park.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇷🇼 Volcanoes National Park</h2>
-  <p><strong>Location:</strong> Northwestern Rwanda</p>
-  <p><strong>Size:</strong> 160 km²</p>
-  <p><strong>Animals:</strong> Mountain gorillas, golden monkeys.</p>
-  <p>Rwanda's premier gorilla trekking destination.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇷🇼 Akagera National Park</h2>
-  <p><strong>Location:</strong> Eastern Rwanda</p>
-  <p><strong>Size:</strong> 1,122 km²</p>
-  <p><strong>Animals:</strong> Big Five, crocodiles, hippos.</p>
-  <p>Rwanda's only savannah national park.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇷🇼 Nyungwe Forest National Park</h2>
-  <p><strong>Location:</strong> Southwestern Rwanda</p>
-  <p><strong>Size:</strong> 1,019 km²</p>
-  <p><strong>Animals:</strong> Chimpanzees, monkeys, birds.</p>
-  <p>One of Africa's oldest rainforests.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇨🇩 Virunga National Park</h2>
-  <p><strong>Location:</strong> Eastern DR Congo</p>
-  <p><strong>Size:</strong> 7,800 km²</p>
-  <p><strong>Animals:</strong> Mountain gorillas, elephants, hippos.</p>
-  <p>Africa's oldest national park and UNESCO World Heritage Site.</p>
-  <a href="index.html#booking" class="btn">Book This Destination</a>
-</div>
-
-<div class="park-card">
-  <h2>🇨🇩 Kahuzi-Biéga National Park</h2>
-  <p><strong>Location:</strong> Eastern DR Congo</p>
-  <p><strong>Size:</strong> 6,000 km²</p>
-  <p><strong>Animals:</strong> Eastern lowland gorillas, chimpanzees.</p>
-  <p>Best known for lowland gorilla trekking.</p>
-
+<!-- HERO -->
+<div class="hero">
+<div>
+<h1>Discover East Africa</h1>
+<p>Uganda • Kenya • Tanzania • Rwanda</p>
+<a href="#booking" class="btn">Plan Safari</a>
 </div>
 </div>
+<!-- DESTINATIONS SLIDER -->
+<section id="destinations">
+<h2>Top Destinations</h2>
+
+<div class="slider" id="destSlider">
+<div class="slide">
+<h3>Uganda 🦍</h3>
+<p>Gorilla Trekking</p>
+<div class="more">Bwindi forest experience with mountain gorillas.</div>
+<button onclick="toggleMore(this)">Read More</button>
+</div>
+    <div class="slide">
+    <h3>Uganda 🏜️ Kidepo Valley</h3>
+    <p>Wild, remote safari experience.</p>
+    <div class="more">
+        Kidepo Valley is Uganda’s most remote national park, famous for its untouched wilderness, lions, cheetahs, ostriches, and dramatic savannah landscapes near the borders of South Sudan and Kenya.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Uganda 🌿 Semuliki</h3>
+    <p>Hot springs & rainforest adventure.</p>
+    <div class="more">
+        Semuliki is a lowland tropical forest with rich biodiversity, famous for the Sempaya hot springs, birds, monkeys, and unique Congo-like rainforest ecosystem.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Uganda 🐒 Kibale Forest</h3>
+    <p>Chimpanzee capital of the world.</p>
+    <div class="more">
+        Kibale Forest is home to over 1,500 chimpanzees and 13 primate species, offering the best chimp tracking experience in East Africa.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Uganda 🦍 Mgahinga</h3>
+    <p>Golden monkeys & volcanoes.</p>
+    <div class="more">
+        Located in the Virunga mountains, Mgahinga offers gorilla trekking, golden monkey tracking, and hiking the volcanic peaks of Muhabura, Gahinga, and Sabinyo.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+<div class="slide">
+    <h3>Uganda 🦁 Queen Elizabeth</h3>
+    <p>Tree climbing lions & boat cruises.</p>
+    <div class="more">
+        Famous for tree-climbing lions in Ishasha, boat safaris on Kazinga Channel, and elephants, hippos, and buffaloes in large numbers.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Uganda 💦 Murchison Falls</h3>
+    <p>Nile River safari.</p>
+    <div class="more">
+        The Nile River squeezes through a narrow gorge creating powerful waterfalls, surrounded by elephants, lions, and giraffes.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Kenya 🦩 Lake Nakuru</h3>
+    <p>Flamingo paradise.</p>
+    <div class="more">
+        Famous for thousands of flamingos, rhinos, and beautiful lake scenery surrounded by acacia forests.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+<div class="slide">
+    <h3>Kenya 🐘 Maasai Mara</h3>
+    <p>Great Migration safari.</p>
+    <div class="more">
+        One of Africa’s most famous safari destinations, known for the Great Wildebeest Migration and the Big Five wildlife experience.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+<div class="slide">
+    <h3>Kenya 🌄 Amboseli</h3>
+    <p>Views of Mount Kilimanjaro.</p>
+    <div class="more">
+        Famous for large elephant herds with the backdrop of Mount Kilimanjaro, Africa’s highest peak.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Tanzania 🦓 Serengeti</h3>
+    <p>Endless wildlife plains.</p>
+
+    <div class="more">
+        Known for vast savannahs, predator action, and the Great Migration of millions of wildebeests and zebras.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Tanzania 🐘 Tarangire</h3>
+    <p>Elephant herds & baobab trees.</p>
+    <div class="more">
+        Known for massive elephant herds, ancient baobab trees, and rich wildlife especially during dry seasons.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Tanzania 🌋 Ngorongoro</h3>
+    <p>World’s largest volcanic caldera.</p>
+    <div class="more">
+        A natural wonder filled with lions, rhinos, elephants, and flamingos inside a collapsed volcano crater.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+    <div class="slide">
+    <h3>Rwanda 🦍 Volcanoes</h3>
+    <p>Gorilla trekking experience.</p>
+    <div class="more">
+        Home to endangered mountain gorillas and golden monkeys, with stunning volcanic mountain scenery.
+    </div>
+    <button onclick="toggleMore(this)">Show More</button>
+</div>
+</section>
+<!-- GALLERY SLIDER -->
+<section id="gallery">
+<h2>Safari Gallery</h2>
+
+<div class="slider" id="gallerySlider">
+<div class="slide">
+<img src="3b9198fe-0483-40fa-8c7d-fb7706cdde46.jpeg">
+</div>
+<div class="slide">
+<img src="36f95f26-015b-4c1b-8a22-cfe14fe0bd13.jpeg">
+</div>
+<div class="slide">
+<img src="7320a1c5-07e1-46a4-9658-1c8a209a1e8e.jpeg">
+</div>
+</div>
+</section>
+
+<!-- REVIEWS -->
+<section>
+<h2>Customer Reviews</h2>
+
+<input id="reviewName" placeholder="Name">
+<select id="reviewRating">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
+
+<textarea id="reviewComment" placeholder="Review"></textarea>
+<button onclick="submitReview()">Submit</button>
+
+<div class="slider" id="reviewsSlider"></div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+<h2>Booking</h2>
+<form id="bookingForm">
+<input name="name" placeholder="Name">
+<input name="email" placeholder="Email">
+<input name="phone" placeholder="Phone">
+<textarea name="message" placeholder="Details"></textarea>
+<button type="submit">Send</button>
+</form>
+</section>
+<!-- SOCIAL -->
+<section class="social-section">
+<h2>Connect With Us</h2>
+
+<div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=61554350095901&mibextid=eQY6cl" target="_blank" title="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+
+    <a href="https://www.instagram.com/tujje_safaris_?igsh=MXJoczN4eXZrM3UzNg%3D%3D&utm_source=qr" target="_blank" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <a href="https://x.com" target="_blank" title="X (Twitter)">
+        <i class="fa-brands fa-x-twitter"></i>
+    </a>
+
+    <a href="https://youtube.com" target="_blank" title="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+    </a>
+
+    <a href="https://wa.me/256702094292" target="_blank" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@tujje.safaris?_t=8kRsJIGa1RO&_r=1" target="_blank" title="TikTok">
+        <i class="fa-brands fa-tiktok"></i>
+    </a>
+
+    <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+        <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+<h3>Pearl Dreams Safaris</h3>
+<p>📍 Kampala, Uganda</p>
+<p>📞 +256 770 462 422</p>
+
+<div class="payment">
+
+<h2>Secure Payment Methods</h2>
+
+<div class="payment-icons">
+
+<i class="fab fa-cc-visa"></i>
+
+<i class="fab fa-cc-mastercard"></i>
+
+<i class="fab fa-cc-paypal"></i>
+
+<i class="fab fa-cc-stripe"></i>
+
+<i class="fab fa-google-pay"></i>
+
+<i class="fab fa-apple-pay"></i>
+
+<i class="fas fa-credit-card"></i>
 
 </div>
 
+<p>
+
+We accept Visa, Mastercard, PayPal, Stripe, Apple Pay, Google Pay and all major Debit & Credit Cards for secure online bookings.
+
+</p>
+
+</div>
+
+<div class="copy">
+
+&copy; <span id="year"></span> Tujje Safaris. All Rights Reserved.
+</footer>
+<!-- SCRIPT -->
+<script>
+// ================= SIDEBAR TOGGLE =================
+function toggleMenu(){
+    document.getElementById("sidebar").classList.toggle("open");
+}
+
+// Close sidebar when clicking a link (optional but good UX)
+document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("open");
+    });
+});
+
+
+// ================= DESTINATION SLIDER =================
+let d = 0;
+setInterval(() => {
+    let slides = document.querySelectorAll("#destSlider .slide");
+    d = (d + 1) % slides.length;
+    document.getElementById("destSlider").style.transform =
+        `translateX(-${d * 100}%)`;
+}, 4000);
+
+
+// ================= GALLERY SLIDER =================
+let g = 0;
+setInterval(() => {
+    let slides = document.querySelectorAll("#gallerySlider .slide");
+    g = (g + 1) % slides.length;
+    document.getElementById("gallerySlider").style.transform =
+        `translateX(-${g * 100}%)`;
+}, 3500);
+
+
+// ================= READ MORE BUTTON =================
+function toggleMore(btn){
+    let more = btn.previousElementSibling;
+
+    if(more.style.display === "block"){
+        more.style.display = "none";
+        btn.innerText = "Read More";
+    } else {
+        more.style.display = "block";
+        btn.innerText = "Show Less";
+    }
+}
+
+
+// ================= REVIEWS =================
+function submitReview(){
+    let box = document.getElementById("reviewsSlider");
+
+    let name = document.getElementById("reviewName").value;
+    let rating = document.getElementById("reviewRating").value;
+    let comment = document.getElementById("reviewComment").value;
+
+    if(name === "" || comment === ""){
+        alert("Please fill in all fields");
+        return;
+    }
+
+    box.innerHTML += `
+        <div class="slide">
+            <h3>${name}</h3>
+            <p>${"⭐".repeat(rating)}</p>
+            <p>${comment}</p>
+        </div>
+    `;
+}
+    function scrollToTop(){
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    // close sidebar after clicking
+    document.getElementById("sidebar").classList.remove("open");
+}
+</script>
+  <!-- JavaScript -->
+
+    
 </body>
-
 </html>
