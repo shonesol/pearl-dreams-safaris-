@@ -1,1 +1,92 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Safari App</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:linear-gradient(90deg,#2E7D32,#F57C00);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box{
+    background:white;
+    padding:25px;
+    width:300px;
+    border-radius:10px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    background:#2E7D32;
+    color:white;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Safari Login</h2>
+
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="register()">Register</button>
+    <button onclick="login()">Login</button>
+
+    <p id="msg"></p>
+</div>
+
+<script type="module">
+import { auth } from "./firebase.js";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+// REGISTER
+window.register = function(){
+    createUserWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+    )
+    .then(()=> msg.innerText="Account created!")
+    .catch(e=> msg.innerText=e.message);
+};
+
+// LOGIN
+window.login = function(){
+    signInWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+    )
+    .then(()=>{
+        msg.innerText="Login success!";
+        setTimeout(()=>window.location.href="index.html",1000);
+    })
+    .catch(e=> msg.innerText=e.message);
+};
+</script>
+
+</body>
+</html>
