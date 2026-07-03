@@ -99,11 +99,14 @@ header{
 .overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.4);
+    background:rgba(0,0,0,0.5);
     display:none;
-    z-index:1500;
+    z-index:2500;
 }
-.overlay.show{display:block;}
+
+.overlay.show{
+    display:block;
+}
 
 /* HERO */
 .hero{
@@ -611,6 +614,12 @@ function toggleMenu(){
     document.getElementById("sidebar").classList.toggle("open");
     document.getElementById("overlay").classList.toggle("show");
 }
+  document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("open");
+        document.getElementById("overlay").classList.remove("show");
+    });
+});
   </script>
   <script>
     let currentSlide = 0;
