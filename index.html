@@ -80,7 +80,8 @@ body{
     background:linear-gradient(var(--green),var(--orange));
     padding:20px;
     transition:0.4s;
-    z-index:9998;
+    z-index:9999;
+     overflow-y:auto;
 }
 .sidebar.open{left:0;}
 .sidebar a{
@@ -92,7 +93,10 @@ body{
     background:rgba(255,255,255,0.15);
     border-radius:6px;
 }
-
+.sidebar a{
+    color:#fff;
+    font-weight:600;
+}
 /* ================= HERO ================= */
 .hero{
     height:75vh;
@@ -431,46 +435,73 @@ We accept Visa, Mastercard, PayPal, Stripe, Apple Pay, Google Pay and all major 
 </footer>
 <!-- SCRIPT -->
 <script>
+// ================= SIDEBAR TOGGLE =================
 function toggleMenu(){
-document.getElementById("sidebar").classList.toggle("open");
+    document.getElementById("sidebar").classList.toggle("open");
 }
 
-/* DEST SLIDER */
-let d=0;
-setInterval(()=>{
-let s=document.querySelectorAll("#destSlider .slide");
-d=(d+1)%s.length;
-document.getElementById("destSlider").style.transform=`translateX(-${d*100}%)`;
-},4000);
+// Close sidebar when clicking a link (optional but good UX)
+document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("open");
+    });
+});
 
-/* GALLERY */
-let g=0;
-setInterval(()=>{
-let s=document.querySelectorAll("#gallerySlider .slide");
-g=(g+1)%s.length;
-document.getElementById("gallerySlider").style.transform=`translateX(-${g*100}%)`;
-},3500);
 
-/* READ MORE */
+// ================= DESTINATION SLIDER =================
+let d = 0;
+setInterval(() => {
+    let slides = document.querySelectorAll("#destSlider .slide");
+    d = (d + 1) % slides.length;
+    document.getElementById("destSlider").style.transform =
+        `translateX(-${d * 100}%)`;
+}, 4000);
+
+
+// ================= GALLERY SLIDER =================
+let g = 0;
+setInterval(() => {
+    let slides = document.querySelectorAll("#gallerySlider .slide");
+    g = (g + 1) % slides.length;
+    document.getElementById("gallerySlider").style.transform =
+        `translateX(-${g * 100}%)`;
+}, 3500);
+
+
+// ================= READ MORE BUTTON =================
 function toggleMore(btn){
-let m=btn.previousElementSibling;
-m.style.display = m.style.display==="block"?"none":"block";
-btn.innerText=m.style.display==="block"?"Show Less":"Read More";
+    let more = btn.previousElementSibling;
+
+    if(more.style.display === "block"){
+        more.style.display = "none";
+        btn.innerText = "Read More";
+    } else {
+        more.style.display = "block";
+        btn.innerText = "Show Less";
+    }
 }
 
-/* REVIEWS */
-function submitReview(){
-let box=document.getElementById("reviewsSlider");
-let name=document.getElementById("reviewName").value;
-let rating=document.getElementById("reviewRating").value;
-let comment=document.getElementById("reviewComment").value;
 
-box.innerHTML+=`
-<div class="slide">
-<h3>${name}</h3>
-<p>${"⭐".repeat(rating)}</p>
-<p>${comment}</p>
-</div>`;
+// ================= REVIEWS =================
+function submitReview(){
+    let box = document.getElementById("reviewsSlider");
+
+    let name = document.getElementById("reviewName").value;
+    let rating = document.getElementById("reviewRating").value;
+    let comment = document.getElementById("reviewComment").value;
+
+    if(name === "" || comment === ""){
+        alert("Please fill in all fields");
+        return;
+    }
+
+    box.innerHTML += `
+        <div class="slide">
+            <h3>${name}</h3>
+            <p>${"⭐".repeat(rating)}</p>
+            <p>${comment}</p>
+        </div>
+    `;
 }
 </script>
 
