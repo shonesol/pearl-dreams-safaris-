@@ -228,6 +228,59 @@ button{
     color:white;
     border-top:3px solid #D4AF37;
 }
+.slider-wrapper{
+    max-width:900px;
+    margin:auto;
+    overflow:hidden;
+    position:relative;
+    border-radius:15px;
+}
+
+.slider-track{
+    display:flex;
+    transition:transform 0.6s ease-in-out;
+}
+
+.slide{
+    min-width:100%;
+    position:relative;
+}
+
+.slide img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+}
+
+.caption{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    background:rgba(0,0,0,0.6);
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+}
+
+/* DOTS */
+.dots{
+    text-align:center;
+    margin-top:10px;
+}
+
+.dots span{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    margin:5px;
+    background:#ccc;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.dots span.active{
+    background:#F57C00;
+}
 </style>
 </head>
 
@@ -260,7 +313,42 @@ button{
         <a href="#booking" class="btn">Plan Safari</a>
     </div>
 </div>
+<!-- IMAGE SLIDER -->
+<section id="photoSlider">
 
+<h2>Safari Highlights</h2>
+
+<div class="slider-wrapper">
+
+    <div class="slider-track" id="heroSlider">
+
+        <div class="slide">
+            <img src="3b9198fe-0483-40fa-8c7d-fb7706cdde46.jpeg">
+            <div class="caption">Uganda 🇺🇬 Wildlife Experience</div>
+        </div>
+
+        <div class="slide">
+            <img src="36f95f26-015b-4c1b-8a22-cfe14fe0bd13.jpeg">
+            <div class="caption">Kenya 🇰🇪 Maasai Mara Safari</div>
+        </div>
+
+        <div class="slide">
+            <img src="7320a1c5-07e1-46a4-9658-1c8a209a1e8e.jpeg">
+            <div class="caption">Tanzania 🇹🇿 Serengeti Plains</div>
+        </div>
+
+    </div>
+
+    <!-- DOTS -->
+    <div class="dots">
+        <span onclick="goSlide(0)"></span>
+        <span onclick="goSlide(1)"></span>
+        <span onclick="goSlide(2)"></span>
+    </div>
+
+</div>
+
+</section>
 <!-- BOOKING -->
 <section id="booking">
 <h2>Book Safari</h2>
@@ -444,8 +532,52 @@ function toggleMenu(){
     document.getElementById("sidebar").classList.toggle("open");
     document.getElementById("overlay").classList.toggle("show");
 }
+  </script>
+  <script>
+    let currentSlide = 0;
+const track = document.getElementById("heroSlider");
+const dots = document.querySelectorAll(".dots span");
 
-</script>
+function updateSlider(){
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
+    dots.forEach(d => d.classList.remove("active"));
+    dots[currentSlide].classList.add("active");
+}
+
+function goSlide(index){
+    currentSlide = index;
+    updateSlider();
+}
+
+// AUTO SLIDE
+setInterval(() => {
+    currentSlide++;
+    if(currentSlide >= 3) currentSlide = 0;
+    updateSlider();
+}, 3500);
+
+// SWIPE (mobile)
+let startX = 0;
+
+track.addEventListener("touchstart", (e)=>{
+    startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend", (e)=>{
+    let endX = e.changedTouches[0].clientX;
+
+    if(startX > endX + 50){
+        currentSlide = (currentSlide + 1) % 3;
+    } else if(startX < endX - 50){
+        currentSlide = (currentSlide - 1 + 3) % 3;
+    }
+
+    updateSlider();
+});
+
+// init
+updateSlider();
+  </script>
 </body>
 </html>
