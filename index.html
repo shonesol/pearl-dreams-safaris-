@@ -17,16 +17,18 @@
 <style>
   
 :root{
-    --green:#2E7D32;
-    --orange:#F57C00;
-    --gold:#D4AF37;
-    --beige:#FFF8E6;
-    --dark:#1B1B1B;
+    --green:#1B5E20;
+    --beige:#F5F5DC;
+    --pearl:#FAFAFA;
+    --black:#111111;
 }
+
+/* GLOBAL */
 html, body{
     width:100%;
     overflow-x:hidden;
 }
+
 *{
     margin:0;
     padding:0;
@@ -35,8 +37,8 @@ html, body{
 }
 
 body{
-    background:var(--beige);
-    color:var(--dark);
+    background:var(--pearl);
+    color:var(--black);
 }
 
 /* HEADER */
@@ -45,7 +47,7 @@ header{
     justify-content:space-between;
     align-items:center;
     padding:10px 15px;
-    background:linear-gradient(90deg,var(--green),var(--orange));
+    background:linear-gradient(90deg,var(--green),var(--black));
     color:white;
     position:sticky;
     top:0;
@@ -61,10 +63,11 @@ header{
     border-radius:6px;
 }
 
+/* LOGO */
 .logo{
     width:40px;
     border-radius:50%;
-    border:2px solid var(--gold);
+    border:2px solid var(--beige);
 }
 
 /* SIDEBAR */
@@ -74,10 +77,10 @@ header{
     left:-260px;
     width:250px;
     height:100%;
-    background:linear-gradient(var(--green),var(--orange));
+    background:linear-gradient(var(--green),var(--black));
     padding:20px;
     transition:0.4s;
-    z-index:3000; /* FIX */
+    z-index:3000;
 }
 
 .sidebar.open{
@@ -127,12 +130,15 @@ header{
     background:rgba(0,0,0,0.5);
 }
 
-.hero div{position:relative;}
+.hero div{
+    position:relative;
+}
 
+/* BUTTON */
 .btn{
     display:inline-block;
     padding:12px 20px;
-    background:linear-gradient(90deg,var(--green),var(--orange));
+    background:linear-gradient(90deg,var(--green),var(--black));
     color:white;
     border-radius:30px;
     text-decoration:none;
@@ -146,7 +152,7 @@ section{
 
 h2{
     text-align:center;
-    color:var(--orange);
+    color:var(--green);
     margin-bottom:20px;
 }
 
@@ -154,82 +160,34 @@ h2{
 form{
     max-width:500px;
     margin:auto;
-    background:white;
+    background:var(--pearl);
     padding:20px;
     border-radius:10px;
 }
 
+/* INPUTS */
 input,textarea,select{
     width:100%;
     padding:10px;
     margin:8px 0;
-    border:1px solid #ddd;
+    border:1px solid #ccc;
     border-radius:6px;
 }
 
+/* BUTTON */
 button{
     width:100%;
     padding:12px;
     margin-top:10px;
     border:none;
-    background:linear-gradient(90deg,var(--green),var(--orange));
+    background:linear-gradient(90deg,var(--green),var(--black));
     color:white;
     font-weight:bold;
     border-radius:6px;
     cursor:pointer;
 }
 
-/* REVIEWS */
-.slide{
-    background:white;
-    padding:10px;
-    margin:10px 0;
-    border-left:5px solid var(--gold);
-}
-  .social-icons{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.social-icons a{
-    text-decoration:none;
-    font-size:30px;
-    color:#2E7D32;
-    background:white;
-    padding:12px;
-    border-radius:50%;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
-
-.social-icons a:hover{
-    transform:scale(1.2);
-    color:#F57C00;
-}
-  .payment-icons{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    font-size:40px;
-    color:#1B1B1B;
-    margin-top:10px;
-}
-
-.payment-icons i{
-    background:white;
-    padding:12px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
-
-.payment-icons i:hover{
-    transform:scale(1.1);
-    color:#F57C00;
-}
+/* SLIDER */
 .slider-wrapper{
     max-width:900px;
     margin:auto;
@@ -281,80 +239,41 @@ button{
 }
 
 .dots span.active{
-    background:#F57C00;
+    background:var(--green);
 }
-  footer{
+
+/* FOOTER */
+footer{
     width:100%;
-    background:#2f2f2f;
+    background:var(--black);
     color:white;
     padding:40px 20px;
     text-align:center;
     margin-top:40px;
-    box-sizing:border-box;
 }
 
 .footer-section{
     margin-bottom:30px;
 }
-  footer .footer-section,
-footer p{
-    max-width:100%;
-    margin:0 auto;
-}
 
 .footer-section h2{
-    color:#FFD700;
-    margin-bottom:10px;
+    color:var(--beige);
 }
 
-/* SOCIAL ICONS (FOOTER ONLY) */
-footer .social-icons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
+/* SOCIAL */
 footer .social-icons a{
     font-size:25px;
     color:white;
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.1);
     padding:10px;
     border-radius:50%;
-    transition:0.3s;
 }
 
-footer .social-icons a:hover{
-    transform:scale(1.2);
-    color:#FFD700;
-}
-
-/* PAYMENT ICONS */
-footer .payment-icons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-    font-size:30px;
-    margin-top:10px;
-}
-
+/* PAYMENT */
 footer .payment-icons i{
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.1);
     padding:10px;
     border-radius:10px;
-    transition:0.3s;
-}
-
-footer .payment-icons i:hover{
-    transform:scale(1.1);
-    color:#FFD700;
-}
-
-.copyright{
-    margin-top:20px;
-    font-size:14px;
-    opacity:0.9;
 }
 </style>
 </head>
