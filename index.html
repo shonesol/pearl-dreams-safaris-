@@ -64,12 +64,13 @@ body{
 }
 
 .logo{
-    width:65px;
-    height:65px;
-    border-radius:50%;
+    width:70px;
+    height:70px;
+    border-radius:12px;   /* 🔥 SQUARE STYLE */
     object-fit:cover;
+
     border:3px solid var(--green);
-    box-shadow:0 4px 10px rgba(0,0,0,.15);
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
 .brand h1{
@@ -85,9 +86,9 @@ body{
     border:none;
     padding:14px 22px;
     border-radius:14px;
-    cursor:pointer;
     font-size:18px;
     font-weight:700;
+    cursor:pointer;
     display:flex;
     align-items:center;
     gap:10px;
@@ -96,7 +97,10 @@ body{
 .menu-btn i{
     font-size:18px;
 }
-
+.menu-wrapper{
+    position:relative;
+}
+   
 .menu-btn:hover{
     background:#6D4C41;
 }
@@ -109,34 +113,38 @@ body{
     display:none;
     position:absolute;
     right:0;
-    top:60px;
+    top:65px;
 
-    width:360px;
-    max-height:75vh;
+    width:450px;   /* 🔥 WIDER MENU */
+    max-height:80vh;
     overflow-y:auto;
 
     background:var(--light);
-    border-radius:16px;
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    border-radius:18px;
 
-    z-index:1000;
-} 
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+    z-index:999; 
+}
 
 .dropdown-content a{
     display:block;
-    padding:16px 20px;
+    padding:16px 22px;
     text-decoration:none;
-    color:var(--brown-dark);
-    border-bottom:1px solid rgba(0,0,0,.08);
-    font-size:17px;
+
+    font-size:18px;
     font-weight:600;
+
+    color:var(--brown-dark);
+
+    border-bottom:1px solid rgba(0,0,0,.08);
+
     transition:.3s;
 }
 
 .dropdown-content a:hover{
     background:var(--green);
-    color:white;
-    padding-left:28px;
+    color:#fff;
+    padding-left:30px;
 }
 
 .dropdown:hover .dropdown-content{
@@ -888,14 +896,12 @@ footer p{
         <h1>PEARL DREAMS SAFARIS</h1>
     </div>
 
-    <div class="dropdown">
-
-        <button class="menu-btn">
+    <div class="menu-wrapper">
+        <button class="menu-btn" onclick="toggleMenu()">
             <i class="fas fa-bars"></i> Menu
         </button>
 
-        <div class="dropdown-content">
-
+        <div class="dropdown-content" id="menu">
             <a href="index.html">🏠 Home</a>
             <a href="about.html">ℹ️ About Us</a>
             <a href="destination.html">🌍 Destinations</a>
@@ -912,9 +918,7 @@ footer p{
             <a href="#location">📍 Location</a>
             <a href="privacy.html">🔒 Privacy Policy</a>
             <a href="terms.html">📜 Terms & Conditions</a>
-
         </div>
-
     </div>
 
 </header>
@@ -1295,6 +1299,22 @@ target="_blank">
 <p>📍 Kampala, Uganda</p>
 <p>© 2026 Pearl Dreams Safaris</p>
 </footer>
+   
+<script>
+function toggleMenu(){
+    const menu = document.getElementById("menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+}
 
+// close menu when clicking outside
+document.addEventListener("click", function(e){
+    const menu = document.getElementById("menu");
+    const button = document.querySelector(".menu-btn");
+
+    if(!button.contains(e.target) && !menu.contains(e.target)){
+        menu.style.display = "none";
+    }
+});
+</script>
 </body>
 </html>
