@@ -274,6 +274,72 @@ button{
 .dots span.active{
     background:#F57C00;
 }
+  footer{
+    background:linear-gradient(135deg,#0D47A1,#1565C0,#1E88E5);
+    color:white;
+    padding:40px 20px;
+    text-align:center;
+    margin-top:40px;
+}
+
+.footer-section{
+    margin-bottom:30px;
+}
+
+.footer-section h2{
+    color:#FFD700;
+    margin-bottom:10px;
+}
+
+/* SOCIAL ICONS (FOOTER ONLY) */
+footer .social-icons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+footer .social-icons a{
+    font-size:25px;
+    color:white;
+    background:rgba(255,255,255,0.15);
+    padding:10px;
+    border-radius:50%;
+    transition:0.3s;
+}
+
+footer .social-icons a:hover{
+    transform:scale(1.2);
+    color:#FFD700;
+}
+
+/* PAYMENT ICONS */
+footer .payment-icons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    font-size:30px;
+    margin-top:10px;
+}
+
+footer .payment-icons i{
+    background:rgba(255,255,255,0.15);
+    padding:10px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+footer .payment-icons i:hover{
+    transform:scale(1.1);
+    color:#FFD700;
+}
+
+.copyright{
+    margin-top:20px;
+    font-size:14px;
+    opacity:0.9;
+}
 </style>
 </head>
 
@@ -373,44 +439,51 @@ button{
 
 <div id="reviewBox"></div>
 
+<!-- FOOTER -->
 <footer>
-  <section id="contact">
-<h2>Contact Us</h2>
-<div style="text-align:center; max-width:600px; margin:auto; background:white; padding:20px; border-radius:10px;">
-<p>📍 Kampala, Uganda</p>
-<p>📞 +256 702 094 292</p>
-<p>📧 pearldreamssafaris@gmail.com</p>
-<p> www.pearldreamssafaris.com</p>
 
-</div>
-</section>
-  <section id="social">
-<h2>Follow Us</h2>
+    <!-- CONTACT -->
+    <div class="footer-section">
+        <h2>Contact Us</h2>
+        <p>📍 Kampala, Uganda</p>
+        <p>📞 +256 702 094 292</p>
+        <p>📧 pearldreamssafaris@gmail.com</p>
+        <p>🌐 www.pearldreamssafaris.com</p>
+    </div>
 
-<div class="social-icons">
-    <a href="https://wa.me/256702094292" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
-</div>  
-</section>
-  </section>
-  <section id="payments">
-<h2>Secure Payment Methods</h2>
+    <!-- SOCIAL -->
+    <div class="footer-section">
+        <h2>Follow Us</h2>
 
-<div class="payment-icons">
-    <i class="fab fa-cc-visa"></i>
-    <i class="fab fa-cc-mastercard"></i>
-    <i class="fab fa-paypal"></i>
-    <i class="fab fa-apple-pay"></i>
-    <i class="fab fa-google-pay"></i>
-</div>
+        <div class="social-icons">
+            <a href="https://wa.me/256702094292"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://facebook.com"><i class="fab fa-facebook"></i></a>
+            <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com"><i class="fab fa-tiktok"></i></a>
+            <a href="https://youtube.com"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
 
-<p style="text-align:center; max-width:600px; margin:auto;">
-We accept Visa, Mastercard, PayPal, Apple Pay and Google Pay for safe and secure bookings worldwide.
-</p>
-</section>
+    <!-- PAYMENTS -->
+    <div class="footer-section">
+        <h2>Secure Payments</h2>
+
+        <div class="payment-icons">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-paypal"></i>
+            <i class="fab fa-apple-pay"></i>
+            <i class="fab fa-google-pay"></i>
+        </div>
+
+        <p>We accept Visa, Mastercard, PayPal, Apple Pay & Google Pay for safe bookings.</p>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="copyright">
+        &copy; <span id="year"></span> Pearl Dreams Safaris. All Rights Reserved.
+    </div>
+
 </footer>
 <!-- FIREBASE -->
 <script type="module">
@@ -571,6 +644,15 @@ track.addEventListener("touchend", (e)=>{
 
 // init
 updateSlider();
+  </script>
+  <script>
+    // AUTO YEAR IN FOOTER
+window.addEventListener("DOMContentLoaded", () => {
+    const yearElement = document.getElementById("year");
+    if (yearElement) {
+        yearElement.innerText = new Date().getFullYear();
+    }
+});
   </script>
 </body>
 </html>
