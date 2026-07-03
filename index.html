@@ -10,880 +10,344 @@
 
 <style>
 
-   PEARL DREAMS SAFARIS CSS
-   Green • Brown • Beige Theme
-=========================== */
-
+/* =========================
+   ROOT COLORS (SAFARI THEME)
+========================= */
 :root{
     --green:#2E7D32;
-    --green-dark:#1B5E20;
-    --brown:#6D4C41;
-    --brown-dark:#4E342E;
-    --beige:#F5F0E1;
-    --light:#FFF8E7;
-    --text:#3E2723;
-    --white:#ffffff;
+    --orange:#F57C00;
+    --gold:#D4AF37;
+    --beige:#FFF8E6;
+    --white:#FFFFFF;
+    --dark:#1B1B1B;
 }
 
+/* =========================
+   RESET
+========================= */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
+    font-family:Poppins, sans-serif;
 }
 
 body{
-    font-family:'Inter',sans-serif;
     background:var(--beige);
-    color:var(--text);
-    line-height:1.7;
+    color:var(--dark);
 }
 
-/* ===========================
+/* =========================
    HEADER
-=========================== */
-
-/* HEADER */
-
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#F5F0E1;
-    padding:10px 20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+========================= */
+header{
+    background:linear-gradient(90deg,var(--green),var(--orange));
+    color:white;
+    padding:10px 15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.brand{
+.header-content{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.logo{
-    width:70px;
-    height:70px;
-    border-radius:12px;   /* 🔥 SQUARE STYLE */
+.logo-container{
+    display:flex;
+    align-items:center;
+}
+
+.logo-img{
+    width:45px;
+    height:45px;
     object-fit:cover;
-
-    border:3px solid var(--green);
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    border-radius:50%;
+    border:2px solid var(--gold);
+    box-shadow:0 0 10px rgba(245,124,0,0.5);
+    background:white;
 }
 
-.brand h1{
+header h1{
+    font-size:20px;
     margin:0;
-    font-size:24px;
-    color:#2E7D32;
-    white-space:nowrap;
-}
-
-.menu-btn{
-    background:var(--green);
-    color:#fff;
-    border:none;
-    padding:14px 22px;
-    border-radius:14px;
-    font-size:18px;
-    font-weight:700;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.menu-btn i{
-    font-size:18px;
-}
-.menu-wrapper{
-    position:relative;
-}
-   
-.menu-btn:hover{
-    background:#6D4C41;
-}
-
-.dropdown{
-    position:relative;
-}
-
-.dropdown-content{
-    display:none;
-    position:absolute;
-    right:0;
-    top:65px;
-
-    width:450px;   /* 🔥 WIDER MENU */
-    max-height:80vh;
-    overflow-y:auto;
-
-    background:var(--light);
-    border-radius:18px;
-
-    box-shadow:0 25px 60px rgba(0,0,0,.25);
-    z-index:999; 
-}
-
-.dropdown-content a{
-    display:block;
-    padding:16px 22px;
-    text-decoration:none;
-
-    font-size:18px;
-    font-weight:600;
-
-    color:var(--brown-dark);
-
-    border-bottom:1px solid rgba(0,0,0,.08);
-
-    transition:.3s;
-}
-
-.dropdown-content a:hover{
-    background:var(--green);
-    color:#fff;
-    padding-left:30px;
-}
-
-.dropdown:hover .dropdown-content{
-    display:block;
-}
-
-/* ===========================
-   BUTTONS
-=========================== */
-
-.btn{
-    background:var(--green);
     color:white;
-    padding:12px 24px;
-    text-decoration:none;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:600;
-    transition:.35s;
 }
 
-.btn:hover{
-    background:var(--brown);
-    transform:translateY(-3px);
-}
-
-/* ===========================
-   HERO
-=========================== */
-
-.hero{
-    height:95vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-
-    background:
-    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url("e8395a5f-fd72-4199-b374-4e2eeb7b5a2a.jpeg");
-
+/* =========================
+   HERO SECTION
+========================= */
+.hero-slider{
+    width:100%;
+    height:70vh;
+    min-height:500px;
+    background-image:url("0aff6cce-daf8-4817-87db-92309cc022ba.jpeg");
     background-size:cover;
     background-position:center;
-}
-
-.hero h1{
-    font-size:65px;
-    margin-bottom:20px;
-    text-shadow:0 5px 15px rgba(0,0,0,.4);
-}
-
-.hero p{
-    font-size:24px;
-    margin-bottom:30px;
-}
-
-/* ===========================
-   SECTIONS
-=========================== */
-
-section{
-    width:100%;
-    padding:70px 5%;
-}
-
-section h2{
-    color:var(--green);
-    margin-bottom:25px;
-    font-size:34px;
-}
-
-/* ===========================
-   DESTINATIONS
-=========================== */
-
-.destinations{
     display:flex;
-    flex-wrap:wrap;
-    gap:25px;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.hero-slider::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:1.2rem;
+    margin-bottom:25px;
+}
+
+.hero-btn{
+    display:inline-block;
+    padding:14px 30px;
+    background:var(--gold);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    background:var(--green);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+section{
+    padding:60px 20px;
+}
+
+.title{
+    text-align:center;
+    color:var(--orange);
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+/* =========================
+   GRID & CARDS
+========================= */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:auto;
 }
 
 .card{
-    flex:1;
-    min-width:250px;
-
-    background:var(--light);
-
-    border-radius:18px;
-
-    padding:25px;
-
-    border-left:6px solid var(--green);
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-    transition:.35s;
-}
-
-.card:hover{
-
-    transform:translateY(-10px);
-
-    border-left:6px solid var(--brown);
-
-    box-shadow:0 20px 35px rgba(0,0,0,.12);
-
-}
-
-/* ===========================
-   DROPDOWN
-=========================== */
-
-.dropdown{
-
-    position:relative;
-
-    display:inline-block;
-
-}
-
-.dropdown-content{
-
-    display:none;
-
-    position:absolute;
-
-    background:var(--light);
-
-    width:420px;
-
-    max-height:80vh;
-
-    overflow-y:auto;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    box-shadow:0 20px 45px rgba(0,0,0,.18);
-
-    z-index:999;
-
-}
-
-.dropdown:hover .dropdown-content{
-
-    display:block;
-
-}
-
-.sub{
-
-    background:var(--beige);
-
-    padding:14px;
-
-    border-radius:12px;
-
-    margin:12px 0;
-
-}
-
-.sub strong{
-
-    display:block;
-
-    margin-bottom:8px;
-
-    color:var(--green);
-
-}
-
-.sub a{
-
-    display:block;
-
-    color:var(--text);
-
-    text-decoration:none;
-
-    padding:4px 0;
-
-}
-
-.sub a:hover{
-
-    color:var(--brown);
-
-}
-    /* ===========================
-   GALLERY
-=========================== */
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
-
-.gallery-item{
-    background:var(--light);
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.4s;
-    position:relative;
-}
-
-.gallery-item:hover{
-    transform:translateY(-10px);
-    box-shadow:0 18px 40px rgba(0,0,0,.15);
-}
-
-.gallery-item img{
-    width:100%;
-    height:380px;
-    object-fit:cover;
-    display:block;
-    transition:.5s;
-    border-bottom:5px solid var(--green);
-}
-
-.gallery-item:hover img{
-    transform:scale(1.05);
-}
-
-.gallery-item p{
-    padding:20px;
-    color:var(--text);
-    line-height:1.8;
-    font-size:15px;
-}
-
-.caption{
-    position:absolute;
-    bottom:15px;
-    left:15px;
-    background:rgba(46,125,50,.95);
-    color:#fff;
-    padding:8px 14px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:bold;
-}
-
-/* ===========================
-   FORMS
-=========================== */
-
-form{
-    max-width:750px;
-    margin:auto;
-    background:var(--light);
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:15px;
-    margin:12px 0;
-    border:1px solid #d8c9b0;
-    border-radius:10px;
-    font-size:16px;
     background:white;
-    color:var(--text);
-    transition:.3s;
+    padding:20px;
+    border-radius:10px;
+    border-left:5px solid var(--gold);
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-    outline:none;
-    border-color:var(--green);
-    box-shadow:0 0 8px rgba(46,125,50,.3);
-}
-
-textarea{
-    resize:vertical;
-    min-height:170px;
-}
-
-/* ===========================
-   REVIEWS
-=========================== */
-
-.review-card{
-    max-width:750px;
-    margin:25px auto;
-    background:var(--light);
-    padding:25px;
-    border-left:6px solid var(--brown);
-    border-radius:18px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.review-card h4{
-    color:var(--green);
-    margin-bottom:8px;
-}
-
-.review-card p{
-    margin:10px 0;
-    color:var(--text);
-}
-
-/* ===========================
-   VIDEOS
-=========================== */
-
-#videos{
-    padding:70px 5%;
-    background:var(--beige);
-}
-
-#videos video{
-    width:100%;
-    height:350px;
-    object-fit:cover;
-    border-radius:20px;
-    border:5px solid var(--green);
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-/* ===========================
-   PARK CARDS
-=========================== */
-
-.park-card{
-    background:var(--light);
-    border-radius:16px;
-    padding:12px;
-    margin-bottom:20px;
-    border:1px solid #d8c9b0;
-    transition:.3s;
-}
-
-.park-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 25px rgba(0,0,0,.12);
-}
-
-.park-card img{
-    width:100%;
-    height:170px;
-    object-fit:cover;
+/* =========================
+   FORMS
+========================= */
+form{
+    max-width:600px;
+    margin:auto;
+    background:white;
+    padding:20px;
     border-radius:12px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
-.park-card h4{
-    margin-top:12px;
-    color:var(--green);
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ddd;
+    border-radius:6px;
 }
 
-/* ===========================
-   WHATSAPP BUTTON
-=========================== */
-
-.whatsapp{
-    background:#2E7D32;
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:6px;
+    font-weight:800;
+    color:white;
+    background:linear-gradient(90deg,var(--green),var(--orange));
+    cursor:pointer;
 }
 
-.whatsapp:hover{
-    background:#1B5E20;
-}
-    /* ======================================
-   SOCIAL MEDIA
-====================================== */
-
-.social-section{
-    text-align:center;
-    padding:60px 20px;
-    background:var(--light);
+/* =========================
+   SOCIAL ICONS
+========================= */
+.social-icons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-top:35px;
 }
 
-.social-section h2{
-    color:var(--green);
-    margin-bottom:25px;
-}
-
-.social{
-    display:inline-flex;
+.social-icons a{
+    width:50px;
+    height:50px;
+    display:flex;
     justify-content:center;
     align-items:center;
-
-    width:60px;
-    height:60px;
-
-    margin:10px;
-
     border-radius:50%;
-
     background:var(--green);
-
-    color:#fff;
-
-    text-decoration:none;
-
-    font-size:24px;
-
-    transition:.35s;
+    color:white;
+    font-size:22px;
+    transition:0.3s;
 }
 
-.social:hover{
-
-    background:var(--brown);
-
-    transform:translateY(-6px) scale(1.1);
-
+.social-icons a:hover{
+    background:var(--orange);
+    color:var(--gold);
+    transform:translateY(-5px);
 }
 
-/* ======================================
-   FOOTER
-====================================== */
-
-footer{
-
-    background:var(--brown-dark);
-
-    color:#F5F0E1;
-
-    text-align:center;
-
-    padding:45px 20px;
-
-}
-
-footer h2{
-
-    color:#fff;
-
-    margin-bottom:15px;
-
-}
-
-footer p{
-
-    margin:8px 0;
-
-    color:#F5F0E1;
-
-}
-
-/* ======================================
-   LINKS
-====================================== */
-
-a{
-
-    transition:.3s;
-
-}
-
-a:hover{
-
-    opacity:.9;
-
-}
-
-/* ======================================
-   SCROLLBAR
-====================================== */
-
-::-webkit-scrollbar{
-
-    width:10px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#e8dfcf;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:var(--green);
-
-    border-radius:20px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:var(--brown);
-
-}
-
-/* ======================================
-   FADE ANIMATION
-====================================== */
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-.card,
-.gallery-item,
-.review-card,
-form{
-
-    animation:fadeUp .8s ease;
-
-}
-
-/* ======================================
-   IMAGE HOVER
-====================================== */
-
-img{
-
-    transition:.4s;
-
-}
-
-img:hover{
-
-    transform:scale(1.02);
-
-}
-
-/* ======================================
-   MOBILE
-====================================== */
-
-@media (max-width:992px){
-
-.hero h1{
-
-    font-size:48px;
-
-}
-
-.hero p{
-
+/* =========================
+   MENU + SIDEBAR
+========================= */
+.menu-btn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:linear-gradient(90deg,var(--green),var(--orange),var(--gold));
+    color:white;
     font-size:20px;
-
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:1001;
 }
 
-.dropdown-content{
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:280px;
+    height:100%;
+    background:linear-gradient(180deg,var(--green),var(--orange));
+    padding:20px;
+    transition:0.4s;
+    z-index:1002;
+    color:white;
+}
 
-    width:100%;
-
+.sidebar.open{
     left:0;
-
 }
 
-}
-
-@media (max-width:768px){
-
-.navbar{
-
-    flex-direction:column;
-
+.sidebar h2{
     text-align:center;
-
+    color:var(--gold);
 }
 
-.navbar h1{
-
-    font-size:22px;
-
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    background:rgba(255,255,255,0.1);
 }
 
-.logo{
-
-    width:55px;
-
+.sidebar a:hover{
+    background:var(--gold);
+    color:black;
 }
 
-nav{
-
-    flex-direction:column;
-
-    gap:10px;
-
+/* =========================
+   HOME BUTTON
+========================= */
+.home-btn{
+    display:inline-block;
+    background:linear-gradient(45deg,var(--green),var(--orange),var(--gold));
+    color:white;
+    padding:10px 18px;
+    border-radius:8px;
+    text-decoration:none;
 }
 
-.menu{
-
-    flex-direction:column;
-
-    width:100%;
-
-}
-
-.btn{
-
-    width:100%;
-
+/* =========================
+   REVIEWS
+========================= */
+.reviews-section{
+    padding:60px 20px;
+    background:var(--beige);
     text-align:center;
-
 }
 
-.hero{
-
-    height:80vh;
-
-    padding:20px;
-
+.review-slider{
+    max-width:600px;
+    margin:30px auto;
 }
 
-.hero h1{
-
-    font-size:36px;
-
+.review-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    border-top:5px solid var(--gold);
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
 }
 
-.hero p{
-
-    font-size:18px;
-
-}
-
-.destinations{
-
-    flex-direction:column;
-
-}
-
-.card{
-
-    width:100%;
-
-}
-
-.gallery{
-
-    grid-template-columns:1fr;
-
-}
-
-.gallery-item img{
-
-    height:260px;
-
-}
-
-form{
-
-    padding:20px;
-
-}
-
-.social{
-
-    width:55px;
-
-    height:55px;
-
-    font-size:22px;
-
-}
-
+/* =========================
+   FOOTER
+========================= */
 footer{
-
-    padding:35px 15px;
-
-}
-.dropdown-content{
-    width:100%;
-    right:0;
-    left:0;
-    border-radius:0;
-}
+    background:var(--dark);
+    color:white;
+    padding:40px;
+    text-align:center;
 }
 
-@media (max-width:480px){
-
-.hero h1{
-
-    font-size:30px;
-
+/* =========================
+   HOME GALLERY
+========================= */
+.home-gallery{
+    padding:70px 5%;
+    background:linear-gradient(180deg,#1f3b1f,#2e5a2e);
 }
 
-.hero p{
-
-    font-size:16px;
-
+.home-gallery h2{
+    text-align:center;
+    color:var(--gold);
 }
 
-section{
-
-    padding:50px 15px;
-
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:768px){
+    .hero-content h1{font-size:2rem;}
+    .hero-content p{font-size:1rem;}
+    .logo-img{width:38px;height:38px;}
+    header h1{font-size:16px;}
 }
 
-.btn{
-
-    padding:12px 18px;
-
-    font-size:15px;
-
-}
-
-.gallery-item img{
-
-    height:220px;
-
-}
-
-.review-card{
-
-    padding:18px;
-
-}
-
-footer p{
-
-    font-size:14px;
-
-}
-
-}
-
-/* ======================================
 </style>
 </head>
     
