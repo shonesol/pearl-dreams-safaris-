@@ -1,204 +1,363 @@
-<html>
-  <head>
-    <title></title>
-      <body>
-        <styles>
-         /* ===========================
-   LODGE CARDS
-=========================== */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>East Africa Safari Lodges</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.lodge-card{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    background:#fff;
-    margin:10px 0;
-    padding:10px;
-    border-radius:12px;
-    transition:.3s;
+<style>
+:root{
+  --green:#1b5e20;
+  --beige:#f5f0e6;
+  --orange:#ff8f00;
+  --gold:#d4af37;
+  --brown:#5d4037;
 }
 
-.lodge-card:hover{
-    background:var(--beige);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
 }
 
-.lodge-card img{
-    width:55px;
-    height:55px;
-    border-radius:10px;
-    object-fit:cover;
+body{
+  background:var(--beige);
+  color:#222;
 }
 
-.lodge-card a{
-    color:var(--brown);
-    text-decoration:none;
-    font-weight:600;
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  background:var(--green);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.lodge-card a:hover{
-    color:var(--green);
+nav a{
+  color:white;
+  text-decoration:none;
+  margin:0 10px;
+  font-weight:bold;
 }
-        </styles>
-  </head>
-               <!-- 🇺🇬 UGANDA -->
-        <h3>Uganda</h3>
 
-        <div class="sub">
-          <strong>Bwindi Impenetrable NP</strong>
-          <a href="#">Buhoma Lodge </a>
-          <a href="#">Mahogany Springs Lodge </a>
-          <a href="#">Bweza Gorilla Lodge  </a>
-          <a href="#">Gorilla Forest Camp </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.back{
+  background:var(--orange);
+  padding:8px 12px;
+  border-radius:6px;
+}
 
-        <div class="sub">
-          <strong>Queen Elizabeth NP</strong>
-          <a href="#">Mweya Safari Lodge — </a>
-          <a href="#">Buffalo Safari Lodge </a>
-          <a href="#">Elephant Plains Lodge </a>
-          <a href="#">Enganzi Game Lodge </a>
-             <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+/* HERO */
+.hero{
+  height:60vh;
+  background:url('https://images.unsplash.com/photo-1547970810-dc1eac37d174?auto=format&fit=crop&w=1400&q=80') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  color:white;
+  text-align:center;
+}
 
-        <div class="sub">
-          <strong>Murchison Falls NP</strong>
-          <a href="#">Paraa Safari Lodge </a>
-          <a href="#">Pakuba Safari Lodge </a>
-          <a href="#">Chobe Safari Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+}
 
-        <div class="sub">
-          <strong>Kidepo Valley NP</strong>
-          <a href="#">Apoka Safari Lodge </a>
-          <a href="#">Kidepo Savannah Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.hero h1{
+  font-size:3rem;
+  color:var(--gold);
+  position:relative;
+}
 
-        <div class="sub">
-          <strong>Lake Mburo NP</strong>
-          <a href="#">Mihingo Lodge </a>
-          <a href="#">Rwakobo Rock Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.hero p{
+  position:relative;
+}
 
-        <!-- 🇰🇪 KENYA -->
-        <h3>Kenya</h3>
+/* SECTIONS */
+.section{
+  padding:40px 20px;
+}
 
-        <div class="sub">
-          <strong>Maasai Mara</strong>
-          <a href="#">Mara Serena Lodge </a>
-          <a href="#">Keekorok Lodge </a>
-          <a href="#">Sarova Mara Camp </a>
-          <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+h2{
+  color:var(--green);
+  margin-bottom:10px;
+}
 
-        <div class="sub">
-          <strong>Amboseli NP</strong>
-          <a href="#">Ol Tukai Lodge </a>
-          <a href="#">Kibo Safari Camp </a>
-          <a href="#">Amboseli Serena Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+h3{
+  color:var(--orange);
+  margin-top:20px;
+}
 
-        <div class="sub">
-          <strong>Tsavo East NP</strong>
-          <a href="#">Voi Safari Lodge </a>
-          <a href="#">Satao Camp </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+/* LODGE CARDS */
+.sub{
+  background:#fff;
+  padding:15px;
+  margin:10px 0;
+  border-radius:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
 
-        <div class="sub">
-          <strong>Lake Nakuru NP</strong>
-          <a href="#">Sarova Lion Hill Lodge</a>
-          <a href="#">Lake Nakuru Lodge</a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.sub strong{
+  display:block;
+  margin-bottom:8px;
+  color:var(--brown);
+}
 
-        <!-- 🇹🇿 TANZANIA -->
-        <h3>Tanzania</h3>
+.sub a{
+  display:inline-block;
+  margin:5px 8px 5px 0;
+  color:var(--green);
+  text-decoration:none;
+}
 
-        <div class="sub">
-          <strong>Serengeti NP</strong>
-          <a href="#">Four Seasons Safari Lodge </a>
-          <a href="#">Serengeti Serena Lodge </a>
-          <a href="#">Kubu Kubu Tented Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 12px;
+  background:var(--gold);
+  color:black;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-        <div class="sub">
-          <strong>Ngorongoro Crater</strong>
-          <a href="#">Ngorongoro Serena Lodge</a>
-          <a href="#">Lemala Camp </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+.btn:hover{
+  background:var(--orange);
+  color:white;
+}
 
-        <div class="sub">
-          <strong>Tarangire NP</strong>
-          <a href="#">Tarangire Safari Lodge </a>
-          <a href="#">Maramboi Tented Camp </a>
-         <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+/* BOOKING */
+#booking{
+  background:#fff;
+  margin:30px 20px;
+  padding:20px;
+  border-radius:12px;
+}
 
-        <!-- 🇷🇼 RWANDA -->
-        <h3>Rwanda</h3>
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
 
-        <div class="sub">
-          <strong>Volcanoes NP</strong>
-          <a href="#">Bisate Lodge </a>
-          <a href="#">Sabyinyo Lodge </a>
-          <a href="#">Virunga Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+button{
+  background:var(--green);
+  color:white;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-        <div class="sub">
-          <strong>Akagera NP</strong>
-          <a href="#">Ruzizi Tented Lodge </a>
-          <a href="#">Magashi Camp </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+button:hover{
+  background:var(--orange);
+}
 
-        <!-- 🇧🇮 BURUNDI -->
-        <h3>Burundi</h3>
+/* FOOTER */
+footer{
+  background:#0f1a12;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
+}
+</style>
+</head>
 
-        <div class="sub">
-          <strong>Kibira NP</strong>
-          <a href="#">Kibira Eco Lodge </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
+<body>
 
-        <div class="sub">
-          <strong>Rusizi NP</strong>
-          <a href="#">Rusizi Safari Camp</a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
-
-        <!-- 🇸🇸 SOUTH SUDAN -->
-        <h3>South Sudan</h3>
-
-        <div class="sub">
-          <strong>Boma NP</strong>
-          <a href="#">Boma Safari Camp </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
-
-        <div class="sub">
-          <strong>Bandingilo NP</strong>
-          <a href="#">Bandingilo Wildlife Camp </a>
-    <a href="index.html#booking" class="btn">Book now</a>
-        </div>
-
-      </div>
-    </div>
-
+<nav>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#booking">Book</a>
+    <a href="#contact">Contact</a>
   </div>
+  <a class="back" href="index.html">Back Home</a>
 </nav>
-  <script>
-function selectLodge(lodgeName){
-  document.getElementById("selectedLodge").value = lodgeName;
+
+<div class="hero" id="home">
+  <div>
+    <h1>Safari Lodges & Parks</h1>
+    <p>Uganda • Kenya • Tanzania • Rwanda • Burundi • South Sudan</p>
+  </div>
+</div>
+
+<div class="section">
+
+<h2>Uganda</h2>
+
+<div class="sub">
+<strong>Bwindi Impenetrable NP</strong>
+<a href="#">Buhoma Lodge </a>
+<a href="#">Mahogany Springs Lodge </a>
+<a href="#">Bweza Gorilla Lodge </a>
+<a href="#">Gorilla Forest Camp </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Queen Elizabeth NP</strong>
+<a href="#">Mweya Safari Lodge — </a>
+<a href="#">Buffalo Safari Lodge </a>
+<a href="#">Elephant Plains Lodge </a>
+<a href="#">Enganzi Game Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Murchison Falls NP</strong>
+<a href="#">Paraa Safari Lodge </a>
+<a href="#">Pakuba Safari Lodge </a>
+<a href="#">Chobe Safari Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Kidepo Valley NP</strong>
+<a href="#">Apoka Safari Lodge </a>
+<a href="#">Kidepo Savannah Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Lake Mburo NP</strong>
+<a href="#">Mihingo Lodge </a>
+<a href="#">Rwakobo Rock Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<!-- 🇰🇪 KENYA -->
+<h3>Kenya</h3>
+
+<div class="sub">
+<strong>Maasai Mara</strong>
+<a href="#">Mara Serena Lodge </a>
+<a href="#">Keekorok Lodge </a>
+<a href="#">Sarova Mara Camp </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Amboseli NP</strong>
+<a href="#">Ol Tukai Lodge </a>
+<a href="#">Kibo Safari Camp </a>
+<a href="#">Amboseli Serena Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Tsavo East NP</strong>
+<a href="#">Voi Safari Lodge </a>
+<a href="#">Satao Camp </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Lake Nakuru NP</strong>
+<a href="#">Sarova Lion Hill Lodge</a>
+<a href="#">Lake Nakuru Lodge</a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<!-- 🇹🇿 TANZANIA -->
+<h3>Tanzania</h3>
+
+<div class="sub">
+<strong>Serengeti NP</strong>
+<a href="#">Four Seasons Safari Lodge </a>
+<a href="#">Serengeti Serena Lodge </a>
+<a href="#">Kubu Kubu Tented Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Ngorongoro Crater</strong>
+<a href="#">Ngorongoro Serena Lodge</a>
+<a href="#">Lemala Camp </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Tarangire NP</strong>
+<a href="#">Tarangire Safari Lodge </a>
+<a href="#">Maramboi Tented Camp </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<!-- 🇷🇼 RWANDA -->
+<h3>Rwanda</h3>
+
+<div class="sub">
+<strong>Volcanoes NP</strong>
+<a href="#">Bisate Lodge </a>
+<a href="#">Sabyinyo Lodge </a>
+<a href="#">Virunga Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Akagera NP</strong>
+<a href="#">Ruzizi Tented Lodge </a>
+<a href="#">Magashi Camp </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<!-- 🇧🇮 BURUNDI -->
+<h3>Burundi</h3>
+
+<div class="sub">
+<strong>Kibira NP</strong>
+<a href="#">Kibira Eco Lodge </a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<div class="sub">
+<strong>Rusizi NP</strong>
+<a href="#">Rusizi Safari Camp</a>
+<a href="index.html#booking" class="btn">Book now</a>
+</div>
+
+<!-- BOOKING -->
+<div id="booking" class="section">
+<h2>Booking Form</h2>
+
+<form>
+<input type="text" id="selectedLodge" placeholder="Selected Lodge" readonly>
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email">
+<input type="tel" placeholder="Phone">
+<textarea placeholder="Travel Dates / Message"></textarea>
+<button type="button">Submit Booking</button>
+</form>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section">
+<h2>Contact Us</h2>
+<p>📧 info@safaris.com</p>
+<p>📞 +256 700 000 000</p>
+<p>📍 Kampala, Uganda</p>
+</div>
+
+<footer>
+© 2026 East Africa Safari Tours
+</footer>
+
+<script>
+function selectLodge(name){
+  document.getElementById("selectedLodge").value = name;
   document.getElementById("booking").scrollIntoView({behavior:"smooth"});
 }
 </script>
-      </body>
+
+</body>
 </html>
