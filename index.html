@@ -193,6 +193,33 @@ footer{
     color:white;
 }
 </style>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// expose globally
+window.db = db;
+window.addDoc = addDoc;
+window.collection = collection;
+    emailjs.send("SERVICE_ID", "TEMPLATE_ID", booking);
+</script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+</script>
+  
 </head>
 
 <body>
@@ -257,10 +284,10 @@ footer{
 <h2>Booking</h2>
 
 <form id="bookingForm">
-<input name="name" placeholder="Name" required>
+<input name="name" placeholder="Full Name" required>
 <input name="email" placeholder="Email" required>
 <input name="phone" placeholder="Phone" required>
-<textarea name="message" placeholder="Message"></textarea>
+<textarea name="message" placeholder="Safari details..." required></textarea>
 
 <button type="submit">Send Booking</button>
 </form>
@@ -381,6 +408,51 @@ autoSlide("destTrack");
 autoSlide("galleryTrack");
 
 </script>
+<script>
+// WhatsApp number (change to yours)
+const whatsappNumber = "256770462422";
 
+document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const booking = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        message: form.message.value,
+        date: new Date().toISOString()
+    };
+
+    try {
+        // 1. Save to Firebase
+        await addDoc(collection(db, "bookings"), booking);
+
+        // 2. Send WhatsApp message
+        const whatsappMsg =
+`New Safari Booking:
+Name: ${booking.name}
+Email: ${booking.email}
+Phone: ${booking.phone}
+Message: ${booking.message}`;
+
+        window.open(
+`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`,
+"_blank"
+        );
+
+        // 3. EmailJS (optional)
+        // emailjs.send("service_id","template_id",booking);
+
+        alert("Booking sent successfully!");
+        form.reset();
+
+    } catch (error) {
+        console.error(error);
+        alert("Error sending booking!");
+    }
+});
+</script>
 </body>
 </html>
