@@ -1,1 +1,416 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pearl Dreams Safaris Video Gallery</title>
+
+<style>
+  /* ===== FEATURED TRIPS ===== */
+/* FILTER BUTTONS */
+.filters{
+  margin:20px 0 40px;
+}
+
+.filters button{
+  margin:5px;
+  padding:10px 16px;
+  border:none;
+  cursor:pointer;
+  border-radius:20px;
+  background:#2E7D32;
+  color:#F5F5DC;
+  transition:0.3s;
+}
+
+.filters button:hover{
+  background:#C9A227;
+  color:#111;
+}
+
+/* TRIP CARD BADGE */
+.trip-card{
+  position:relative;
+}
+
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#C9A227;
+  color:#111;
+  padding:5px 10px;
+  font-size:12px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+/* COUNTDOWN */
+.countdown{
+  font-weight:bold;
+  color:#2E7D32;
+  margin:10px 0;
+}
+ /* ===== HERO SECTION ===== */
+.hero{
+  height:100vh;
+  background:url("hero.jpg") center/cover no-repeat;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  color:#F5F5DC;
+}
+
+.hero-content h1{
+  font-size:3.5rem;
+  color:#C9A227; /* pearl gold accent */
+  letter-spacing:2px;
+  margin-bottom:15px;
+}
+
+.tagline{
+  font-size:1.3rem;
+  color:#F8F8FF;
+  margin-bottom:20px;
+  font-weight:500;
+}
+
+.description{
+  font-size:1rem;
+  line-height:1.7;
+  margin-bottom:15px;
+  color:#F5F5DC;
+}
+
+/* BUTTONS */
+.hero-buttons{
+  margin-top:25px;
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:#2E7D32;
+  color:#F5F5DC;
+  padding:12px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn-primary:hover{
+  background:#C9A227;
+  color:#111;
+}
+
+.btn-secondary{
+  background:#111;
+  color:#F5F5DC;
+  padding:12px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  border:1px solid #C9A227;
+  transition:0.3s;
+}
+
+.btn-secondary:hover{
+  background:#2E7D32;
+}
+  /* ===== FOOTER ===== */
+.footer{
+  background:linear-gradient(180deg,#111,#2E7D32);
+  color:#F5F5DC;
+  padding:60px 20px 20px;
+  margin-top:60px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:25px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.footer-box h2,
+.footer-box h3{
+  color:#C9A227;
+  margin-bottom:15px;
+}
+
+.footer-box p{
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:8px;
+}
+
+.footer-box a{
+  display:block;
+  color:#F5F5DC;
+  text-decoration:none;
+  margin:6px 0;
+  transition:0.3s;
+}
+
+.footer-box a:hover{
+  color:#C9A227;
+  transform:translateX(5px);
+}
+
+/* SOCIAL */
+.socials a{
+  display:inline-block;
+  margin:5px 8px 5px 0;
+  padding:6px 10px;
+  background:#2E7D32;
+  border-radius:20px;
+  font-size:12px;
+}
+
+.socials a:hover{
+  background:#C9A227;
+  color:#111;
+}
+
+/* BOTTOM */
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,0.2);
+  font-size:14px;
+}
+  </style>
+  </head>
+  <body>
+    <section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+
+    <h1>PEARL DREAMS SAFARIS</h1>
+
+    <p class="tagline">
+      Experience the soul of Africa through unforgettable journeys crafted with passion, comfort, and adventure.
+    </p>
+
+    <p class="description">
+      At Pearl Dreams Safaris, we take you beyond ordinary travel. From the misty mountains of Uganda to the endless plains of the Serengeti, every journey is designed to connect you with nature, wildlife, and culture in its purest form.
+    </p>
+
+    <p class="description">
+      Whether you are tracking mountain gorillas, witnessing the Great Migration, or exploring cultural villages, we create personalized safari experiences that turn your dreams into lifelong memories.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#trips" class="btn-primary">Explore Trips</a>
+      <a href="#bookingForm" class="btn-secondary">Book Now</a>
+    </div>
+
+  </div>
+</section>
+    <section class="featured-trips" id="trips">
+
+  <h2 class="section-title">🌍 Featured Safari Trips</h2>
+  <p class="section-subtitle">Explore our best handpicked African adventures</p>
+
+  <!-- FILTER BUTTONS -->
+  <div class="filters">
+    <button onclick="filterTrips('all')">All</button>
+    <button onclick="filterTrips('uganda')">Uganda</button>
+    <button onclick="filterTrips('kenya')">Kenya</button>
+    <button onclick="filterTrips('tanzania')">Tanzania</button>
+    <button onclick="filterTrips('rwanda')">Rwanda</button>
+  </div>
+
+  <div class="trips-grid">
+
+    <!-- TRIP 1 -->
+    <div class="trip-card uganda" data-deadline="2026-07-20">
+      <span class="badge">🔥 Limited Slots</span>
+      <img src="gorilla.jpg">
+      <div class="trip-content">
+        <h3>🦍 Gorilla Trekking Uganda</h3>
+        <p>Walk with mountain gorillas in Bwindi Forest.</p>
+        <p class="countdown"></p>
+        <a href="#bookingForm" class="trip-btn">Book Now</a>
+      </div>
+    </div>
+
+    <!-- TRIP 2 -->
+    <div class="trip-card tanzania" data-deadline="2026-08-10">
+      <span class="badge">🔥 Limited Slots</span>
+      <img src="serengeti.jpg">
+      <div class="trip-content">
+        <h3>🦁 Serengeti Migration Safari</h3>
+        <p>Witness the Great Migration in Tanzania.</p>
+        <p class="countdown"></p>
+        <a href="#bookingForm" class="trip-btn">Book Now</a>
+      </div>
+    </div>
+
+    <!-- TRIP 3 -->
+    <div class="trip-card kenya" data-deadline="2026-07-30">
+      <span class="badge">🔥 Limited Slots</span>
+      <img src="masai.jpg">
+      <div class="trip-content">
+        <h3>🏕️ Maasai Cultural Tour</h3>
+        <p>Discover rich Maasai traditions in Kenya.</p>
+        <p class="countdown"></p>
+        <a href="#bookingForm" class="trip-btn">Book Now</a>
+      </div>
+    </div>
+
+    <!-- TRIP 4 -->
+    <div class="trip-card rwanda" data-deadline="2026-08-25">
+      <span class="badge">🔥 Limited Slots</span>
+      <img src="volcano.jpg">
+      <div class="trip-content">
+        <h3>🌋 Volcanoes National Park</h3>
+        <p>Golden monkey & gorilla trekking in Rwanda.</p>
+        <p class="countdown"></p>
+        <a href="#bookingForm" class="trip-btn">Book Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+    <footer class="footer">
+
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-box">
+      <h2>🌍 Pearl Dreams Safaris</h2>
+      <p>
+        Crafting unforgettable African safari experiences across Uganda, Kenya, Tanzania, and Rwanda.
+        We turn travel dreams into real-life adventures filled with wildlife, culture, and nature.
+      </p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <a href="#trips">Featured Trips</a>
+      <a href="#bookingForm">Book Safari</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About Us</a>
+      <a href="destinations.html">Destinations</a>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>📍 Kampala, Uganda</p>
+      <p>📞 +256 770 462 422</p>
+      <p>📞 +256 762 584 996</p>
+      <p>📧 info@pearldreamssafaris.com</p>
+    </div>
+
+    <!-- SAFARI INFO -->
+    <div class="footer-box">
+      <h3>Safari Info</h3>
+      <p>🦁 Gorilla Trekking</p>
+      <p>🦓 Wildlife Safaris</p>
+      <p>🏕️ Cultural Tours</p>
+      <p>🌋 Volcano Adventures</p>
+      <p>🚙 Private & Group Tours</p>
+    </div>
+
+    <!-- PAYMENT -->
+    <div class="footer-box">
+      <h3>Payment Methods</h3>
+      <p>💳 Visa / Mastercard</p>
+      <p>📱 Mobile Money (Uganda)</p>
+      <p>💰 Cash on Arrival</p>
+      <p>🔐 Secure Online Booking</p>
+    </div>
+
+    <!-- SOCIAL -->
+    <div class="footer-box">
+      <h3>Follow Us</h3>
+      <div class="socials">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">YouTube</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Pearl Dreams Safaris. All Rights Reserved.</p>
+  </div>
+
+</footer>
+    <script>
+// FILTER FUNCTION
+function filterTrips(country){
+  const cards = document.querySelectorAll(".trip-card");
+
+  cards.forEach(card => {
+    if(country === "all"){
+      card.style.display = "block";
+    } else {
+      card.style.display =
+        card.classList.contains(country) ? "block" : "none";
+    }
+  });
+}
+
+
+// COUNTDOWN TIMER
+function updateCountdowns(){
+  const cards = document.querySelectorAll(".trip-card");
+
+  cards.forEach(card => {
+    const deadline = new Date(card.getAttribute("data-deadline")).getTime();
+    const now = new Date().getTime();
+    const diff = deadline - now;
+
+    let output = "";
+
+    if(diff > 0){
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000*60*60));
+
+      output = `⏳ ${days}d ${hours}h left`;
+    } else {
+      output = "❌ Closed";
+    }
+
+    card.querySelector(".countdown").innerText = output;
+  });
+}
+
+setInterval(updateCountdowns, 1000);
+updateCountdowns();
+</script>
+  </body>
+</html>
