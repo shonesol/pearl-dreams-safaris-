@@ -1,1 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pearl Dreams Safaris - 10 Day Itinerary</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins;
+}
+
+body{
+  background:#F5F5DC;
+  color:#111;
+}
+
+/* ===== BACK HOME ===== */
+.home-btn{
+  display:inline-block;
+  margin:15px;
+  padding:12px 20px;
+  background:linear-gradient(90deg,#2E7D32,#111);
+  color:#F5F5DC;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.home-btn:hover{
+  background:#C9A227;
+  color:#111;
+}
+
+/* ===== HERO ===== */
+.hero{
+  padding:80px 20px;
+  text-align:center;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+  url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover no-repeat;
+  color:#F5F5DC;
+}
+
+.hero h1{
+  font-size:3rem;
+  color:#C9A227;
+}
+
+.hero p{
+  max-width:800px;
+  margin:auto;
+  margin-top:10px;
+}
+
+/* ===== ITINERARY GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  padding:20px;
+  border-left:5px solid #C9A227;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h3{
+  color:#2E7D32;
+}
+
+/* HIDDEN TEXT */
+.more{
+  display:none;
+  margin-top:10px;
+  color:#333;
+  line-height:1.6;
+}
+
+/* BUTTON */
+.read-btn{
+  margin-top:10px;
+  padding:8px 14px;
+  border:none;
+  background:#2E7D32;
+  color:#F5F5DC;
+  border-radius:20px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.read-btn:hover{
+  background:#C9A227;
+  color:#111;
+}
+
+/* FOOTER */
+footer{
+  background:#111;
+  color:#F5F5DC;
+  text-align:center;
+  padding:50px 20px;
+  margin-top:60px;
+}
+
+footer h2{
+  color:#C9A227;
+}
+
+footer p{
+  max-width:700px;
+  margin:auto;
+  margin-top:10px;
+  line-height:1.6;
+}
+
+.footer-links a{
+  color:#F5F5DC;
+  margin:0 10px;
+  text-decoration:none;
+}
+
+.footer-links a:hover{
+  color:#C9A227;
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="home-btn">🏠 Back to Home</a>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>🌍 10-Day Safari Itinerary</h1>
+  <p>Experience the ultimate East African adventure with Pearl Dreams Safaris — carefully designed for wildlife, culture, and luxury.</p>
+</section>
+
+<!-- ITINERARY -->
+<section class="grid">
+
+  <div class="card">
+    <h3>Day 1 — Arrival in Uganda 🇺🇬</h3>
+    <p>Airport pickup and hotel check-in.</p>
+    <div class="more">Meet your guide, receive safari briefing, and relax at your lodge.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 2 — Kampala City Tour 🏙️</h3>
+    <p>Explore Uganda’s capital city.</p>
+    <div class="more">Visit cultural sites, markets, and historical landmarks.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 3 — Lake Victoria 🌊</h3>
+    <p>Boat cruise experience.</p>
+    <div class="more">Enjoy sunset views and visit fishing villages.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 4 — Murchison Falls 🦁</h3>
+    <p>Game drive adventure.</p>
+    <div class="more">See elephants, lions, giraffes, and powerful waterfalls.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 5 — Boat Safari 🚤</h3>
+    <p>Nile River cruise.</p>
+    <div class="more">Spot hippos, crocodiles, and rare birds.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 6 — Transfer to Bwindi Forest 🌿</h3>
+    <p>Journey to gorilla land.</p>
+    <div class="more">Drive through scenic hills and villages.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 7 — Gorilla Trekking 🦍</h3>
+    <p>Meet mountain gorillas.</p>
+    <div class="more">Experience one of the rarest wildlife encounters on earth.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 8 — Cultural Experience 🏕️</h3>
+    <p>Visit local communities.</p>
+    <div class="more">Enjoy traditional dances and storytelling.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 9 — Queen Elizabeth Park 🐘</h3>
+    <p>Big Five safari drive.</p>
+    <div class="more">Lions, elephants, buffalo, and scenic landscapes.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+  <div class="card">
+    <h3>Day 10 — Departure ✈️</h3>
+    <p>Farewell Uganda.</p>
+    <div class="more">Transfer to airport with unforgettable memories.</div>
+    <button class="read-btn" onclick="toggle(this)">Read More</button>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h2>🌍 Pearl Dreams Safaris</h2>
+  <p>“Where Dreams Meet the Wild” — Your unforgettable journey ends, but memories last forever.</p>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <p style="margin-top:20px;">© 2026 Pearl Dreams Safaris</p>
+</footer>
+
+<!-- JS -->
+<script>
+function toggle(btn){
+  const more = btn.previousElementSibling;
+
+  if(more.style.display === "block"){
+    more.style.display = "none";
+    btn.innerText = "Read More";
+  } else {
+    more.style.display = "block";
+    btn.innerText = "Read Less";
+  }
+}
+</script>
+
+</body>
+</html>
