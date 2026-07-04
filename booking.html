@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Safari | Pearl Dreams Safaris</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* ===== BASE ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+background:#F5F5DC;
+color:#111;
+}
+
+/* ===== HERO ===== */
+.hero{
+height:70vh;
+background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&w=1500&q=80");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+position:relative;
+}
+
+.hero h1{
+font-size:3rem;
+}
+
+.hero p{
+margin-top:10px;
+font-size:1.2rem;
+}
+
+.home-btn{
+position:absolute;
+top:20px;
+left:20px;
+background:#2E7D32;
+color:#fff;
+padding:10px 16px;
+border-radius:25px;
+text-decoration:none;
+font-weight:600;
+}
+
+.home-btn:hover{
+background:#111;
+}
+
+/* ===== SECTION ===== */
+section{
+padding:60px 20px;
+}
+
+.title{
+text-align:center;
+color:#2E7D32;
+font-size:32px;
+margin-bottom:20px;
+}
+
+/* ===== FORM ===== */
+form{
+max-width:700px;
+margin:auto;
+background:#F8F8FF;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:6px;
+background:linear-gradient(90deg,#2E7D32,#111);
+color:#fff;
+font-weight:700;
+cursor:pointer;
+}
+
+button:hover{
+background:#C9A227;
+color:#111;
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-size:24px;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+
+<a href="index.html" class="home-btn">← Home</a>
+
+<div>
+<h1>Book Your Dream Safari</h1>
+<p>Fast Booking • Instant WhatsApp Confirmation • Real Support</p>
+</div>
+
+</div>
+
+<!-- FORM -->
+<section>
+<h2 class="title">Safari Booking Form</h2>
+
+<form id="bookingForm">
+
+<input id="name" type="text" placeholder="Full Name" required>
+<input id="email" type="email" placeholder="Email Address" required>
+<input id="phone" type="tel" placeholder="Phone Number" required>
+<input id="country" type="text" placeholder="Country">
+
+<select id="package" required>
+<option>Gorilla Trekking</option>
+<option>Wildlife Safari</option>
+<option>Luxury Safari</option>
+<option>Honeymoon Safari</option>
+<option>Cultural Tour</option>
+<option>Bird Watching</option>
+</select>
+
+<select id="destination" required>
+<option>Uganda</option>
+<option>Kenya</option>
+<option>Tanzania</option>
+<option>Rwanda</option>
+</select>
+
+<input id="date" type="date" required>
+
+<textarea id="message" placeholder="Additional Message"></textarea>
+
+<button type="submit">Send Booking via WhatsApp</button>
+
+</form>
+</section>
+
+<!-- FLOAT WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/256770462422" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+// GET VALUES
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let phone = document.getElementById("phone").value;
+let country = document.getElementById("country").value;
+let package = document.getElementById("package").value;
+let destination = document.getElementById("destination").value;
+let date = document.getElementById("date").value;
+let message = document.getElementById("message").value;
+
+// FORMAT WHATSAPP MESSAGE
+let whatsappMessage =
+`🌍 *NEW SAFARI BOOKING - PEARL DREAMS SAFARIS* 🌍
+
+👤 Name: ${name}
+📧 Email: ${email}
+📞 Phone: ${phone}
+🌎 Country: ${country}
+
+🦁 Package: ${package}
+📍 Destination: ${destination}
+📅 Date: ${date}
+
+💬 Message: ${message}
+
+Please confirm my booking. Thank you!`;
+
+// ENCODE URL
+let url = "https://wa.me/256770462422?text=" + encodeURIComponent(whatsappMessage);
+
+// OPEN WHATSAPP
+window.open(url, "_blank");
+});
+</script>
+
+</body>
+</html>
