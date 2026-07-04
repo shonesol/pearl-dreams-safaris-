@@ -170,6 +170,69 @@ footer{
   padding:20px;
   margin-top:30px;
 }
+  .booking-wrapper{
+max-width:700px;
+margin:auto;
+padding:40px 20px;
+background:#F5F5DC;
+}
+
+.booking-title{
+text-align:center;
+color:#2E7D32;
+font-size:32px;
+margin-bottom:20px;
+font-weight:700;
+}
+
+#bookingForm{
+background:#F8F8FF;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+border-left:6px solid #C9A227;
+}
+
+#bookingForm input,
+#bookingForm select,
+#bookingForm textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:6px;
+border:1px solid #ccc;
+font-family:Poppins;
+}
+
+#bookingForm textarea{
+min-height:120px;
+resize:none;
+}
+
+#bookingForm button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:6px;
+background:linear-gradient(90deg,#2E7D32,#111);
+color:#fff;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+#bookingForm button:hover{
+background:#C9A227;
+color:#111;
+}
+
+#msg{
+text-align:center;
+margin-top:15px;
+font-weight:600;
+color:#2E7D32;
+}
 </style>
 </head>
 
@@ -327,19 +390,46 @@ footer{
 </div>
 
 <!-- BOOKING -->
-<div id="booking" class="section">
-<h2>Booking Form</h2>
+  <section>
+<div class="booking-wrapper">
 
-<form>
-<input type="text" id="selectedLodge" placeholder="Selected Lodge" readonly>
-<input type="text" placeholder="Full Name">
-<input type="email" placeholder="Email">
-<input type="tel" placeholder="Phone">
-<textarea placeholder="Travel Dates / Message"></textarea>
-<button type="button">Submit Booking</button>
+<h2 class="booking-title">Book Your Safari</h2>
+
+<form id="bookingForm">
+
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
+<input type="text" id="country" placeholder="Country" required>
+
+<select id="package" required>
+<option>Gorilla Trekking</option>
+<option>Wildlife Safari</option>
+<option>Luxury Safari</option>
+<option>Honeymoon Safari</option>
+<option>Cultural Tour</option>
+<option>Bird Watching</option>
+</select>
+
+<select id="destination" required>
+<option>Uganda</option>
+<option>Kenya</option>
+<option>Tanzania</option>
+<option>Rwanda</option>
+</select>
+
+<input type="date" id="date" required>
+
+<textarea id="message" placeholder="Additional Message"></textarea>
+
+<button type="submit">Send Booking</button>
+
+<p id="msg"></p>
+
 </form>
-</div>
 
+</div>
+</section>
 <!-- CONTACT -->
 <div id="contact" class="section">
 <h2>Contact Us</h2>
@@ -359,6 +449,77 @@ function selectLodge(name){
   document.getElementById("booking").scrollIntoView({behavior:"smooth"});
 }
 </script>
+  <script>
+// ================= EMAILJS INIT =================
+emailjs.init("Zwk70uRIy541uYbf4");
 
+// ================= FIREBASE =================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAm3w6yrzOWzNpqNgKpGqjwaweqJaC0sXo",
+  authDomain: "pearldreamssafaris-ab35b.firebaseapp.com",
+  databaseURL: "https://pearldreamssafaris-ab35b-default-rtdb.firebaseio.com",
+  projectId: "pearldreamssafaris-ab35b",
+  storageBucket: "pearldreamssafaris-ab35b.appspot.com",
+  messagingSenderId: "732800395999",
+  appId: "1:732800395999:web:e2925b1c7ee4bd818ad76a",
+  measurementId: "G-36LBKKMMTY"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ================= FORM =================
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+e.preventDefault();
+
+const btn = this.querySelector("button");
+btn.disabled = true;
+btn.innerText = "Sending...";
+
+const data = {
+name: document.getElementById("name").value,
+email: document.getElementById("email").value,
+phone: document.getElementById("phone").value,
+country: document.getElementById("country").value,
+package: document.getElementById("package").value,
+destination: document.getElementById("destination").value,
+date: document.getElementById("date").value,
+message: document.getElementById("message").value
+};
+
+try {
+
+/* ===== EMAILJS SEND ===== */
+await emailjs.send(
+"service_4osk0sn",
+"template_h6g0ld4",
+data
+);
+
+/* ===== FIREBASE SAVE ===== */
+await addDoc(collection(db,"bookings"),{
+...data,
+status:"Pending",
+createdAt:serverTimestamp()
+});
+
+document.getElementById("msg").innerText =
+"✅ Booking sent successfully! We will contact you soon.";
+
+this.reset();
+
+} catch(err){
+console.log(err);
+document.getElementById("msg").innerText =
+"❌ Failed to send booking. Try again.";
+}
+
+btn.disabled = false;
+btn.innerText = "Send Booking";
+});
+    </script>
 </body>
 </html>
