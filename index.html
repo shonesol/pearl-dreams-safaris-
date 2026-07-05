@@ -23,14 +23,39 @@ color:#111111;
 }
 
 /* ===== HEADER ===== */
+/* ===== HEADER ===== */
 header{
     background:linear-gradient(90deg,#2E7D32,#111111);
-    color:#F8F8FF;
-    padding:8px 15px;
-    text-align:center;
+    padding:10px 20px;
     position:sticky;
     top:0;
     z-index:1000;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:15px;
+}
+
+.logo-img{
+    width:60px;       /* Change to 50px if you want even smaller */
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+header h1{
+    color:#F8F8FF;
+    font-size:28px;
+    margin:0;
+    font-weight:700;
+}
+    .logo-img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
 /* ===== HERO SLIDER ===== */
@@ -485,17 +510,15 @@ transform:scale(1.05);
 </a>
 <!-- HEADER -->
 <header>
-  <div class="header-content">
+    <div class="header-content">
+        <div class="logo-container">
+            <img src="AA6F2B67-24AB-44D6-86E6-2795678BFCB0.png"
+                 alt="Pearl Dreams Safaris Logo"
+                 class="logo-img">
+        </div>
 
-    <!-- LOGO (LEFT) -->
-    <div class="logo-container">
-      <img src="AA6F2B67-24AB-44D6-86E6-2795678BFCB0.png" alt="Pearl Dreams Safaris Logo" class="logo-img">
+        <h1>PEARL DREAMS SAFARIS</h1>
     </div>
-
-    <!-- TITLE -->
-    <h1>PEARL DREAMS SAFARIS</h1>
-
-  </div>
 </header>
 <section class="hero-slider">
   <div class="slide active">
