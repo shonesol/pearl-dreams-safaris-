@@ -34,8 +34,6 @@ body{
     line-height:1.7;
 }
 
-
-
 /* ================= SIDEBAR ================= */
 .sidebar{
     position:fixed;
@@ -51,9 +49,7 @@ body{
     box-shadow:5px 0 15px rgba(0,0,0,.3);
 }
 
-.sidebar.open{
-    left:0;
-}
+.sidebar.open{ left:0; }
 
 .sidebar a{
     display:block;
@@ -71,9 +67,11 @@ body{
     background:var(--white);
     color:var(--green);
 }
-/* ================= HERO ================= */.hero{
+
+/* ================= HERO ================= */
+.hero{
     height:85vh;
-    background:url("8ce977a4-f6bb-4c78-8114-cee0a961f662.jpeg") center center/cover;
+    background:url("8ce977a4-f6bb-4c78-8114-cee0a961f662.jpeg") center/cover;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -95,16 +93,8 @@ body{
     max-width:750px;
 }
 
-.hero h1{
-    font-size:3.5rem;
-    margin-bottom:15px;
-    color:white;
-}
-
-.hero p{
-    font-size:1.3rem;
-    margin-bottom:25px;
-}
+.hero h1{ font-size:3.5rem; margin-bottom:15px; }
+.hero p{ font-size:1.3rem; margin-bottom:25px; }
 
 /* ================= SECTIONS ================= */
 section{padding:60px 20px;}
@@ -115,12 +105,15 @@ h2{
     font-size:2.3rem;
 }
 
-/* ================= SLIDERS ================= */
+/* ================= SLIDERS (FIXED) ================= */
 .slider{
     display:flex;
     overflow:hidden;
     max-width:900px;
     margin:auto;
+
+    /* ✅ FIX: smooth sliding */
+    transition:transform 0.6s ease;
 }
 
 .slide{
@@ -132,25 +125,7 @@ h2{
     box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
 
-.more{display:none;margin-top:10px;color:#444;}
-
-.slide button{
-    margin-top:18px;
-    background:var(--green);
-    color:white;
-    padding:10px 20px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    width:auto;
-}
-
-.slide button:hover{
-    background:black;
-}
-
 /* ================= GALLERY ================= */
-/* ===== IMAGE GALLERY FIX ===== */
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -162,38 +137,17 @@ h2{
     height:220px;
     object-fit:cover;
     border-radius:18px;
-    transition:.4s;
-    box-shadow:0 8px 18px rgba(0,0,0,.15);
 }
 
-.gallery img:hover{
-    transform:scale(1.05);
-}
-
-/* ================= FORMS ================= */
-form{
-    background:white;
-    border-radius:20px;
-    padding:30px;
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-input,
-textarea,
-select{
-    border:1px solid #ccc;
-    border-radius:10px;
-    padding:12px;
-}
-
-button{
+/* ================= BUTTON ================= */
+.btn{
+    display:inline-block;
+    padding:14px 28px;
     background:var(--green);
     color:white;
-    border-radius:30px;
-}
-
-button:hover{
-    background:black;
+    text-decoration:none;
+    border-radius:40px;
+    font-weight:bold;
 }
 
 /* ================= FOOTER ================= */
@@ -204,45 +158,8 @@ footer{
     padding:60px 20px;
 }
 
-footer h3{
-    font-size:2rem;
-    margin-bottom:10px;
-}
-
-.copy{
-    margin-top:30px;
-    border-top:1px solid rgba(255,255,255,.2);
-    padding-top:20px;
-}
-
-.social a{
-    display:block;
-    color:white;
-    margin:5px;
-}
-    img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-    .container {
-    width: 95%;
-    max-width: 1200px;
-    margin: auto;
-}
-.payment-icons{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:18px;
-    margin:20px 0;
-}
-
-.payment-icons i{
-    font-size:42px;
-    color:white;
-}
-   .social-icons{
+/* ================= SOCIAL ================= */
+.social-icons{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -252,36 +169,24 @@ footer h3{
 .social-icons a{
     color:var(--green);
     font-size:40px;
-    transition:.3s;
 }
 
-.social-icons a:hover{
-    color:black;
-    transform:scale(1.2);
+/* ================= PAYMENT ================= */
+.payment-icons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
 }
-.btn{
-    display:inline-block;
-    padding:14px 28px;
-    background:var(--green);
+
+.payment-icons i{
+    font-size:42px;
     color:white;
-    text-decoration:none;
-    border-radius:40px;
-    font-weight:bold;
-    transition:.3s;
 }
-
-.btn:hover{
-    background:black;
-    transform:translateY(-3px);
-}
-    // Current Year
-document.getElementById("year").textContent = new Date().getFullYear();
 </style>
 </head>
 
 <body>
-
-
 
 <!-- HERO -->
 <div class="hero">
@@ -291,230 +196,106 @@ document.getElementById("year").textContent = new Date().getFullYear();
 <a href="booking.html" class="btn">Plan Safari</a>
 </div>
 </div>
-    
-<!-- DESTINATIONS SLIDER -->
+
+<!-- DESTINATIONS -->
+<!-- DESTINATIONS SLIDER (6 ONLY) -->
 <section id="destinations">
 <h2>Top Destinations</h2>
 
 <div class="slider" id="destSlider">
+
 <div class="slide">
-<h3>Uganda 🦍</h3>
+<h3>Uganda 🦍 Bwindi</h3>
 <p>Gorilla Trekking</p>
-<div class="more">Bwindi forest experience with mountain gorillas.</div>
+<div class="more">Meet mountain gorillas in dense rainforest.</div>
 <button onclick="toggleMore(this)">Read More</button>
 </div>
-    <div class="slide">
-    <h3>Uganda 🏜️ Kidepo Valley</h3>
-    <p>Wild, remote safari experience.</p>
-    <div class="more">
-        Kidepo Valley is Uganda’s most remote national park, famous for its untouched wilderness, lions, cheetahs, ostriches, and dramatic savannah landscapes near the borders of South Sudan and Kenya.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Uganda 🌿 Semuliki</h3>
-    <p>Hot springs & rainforest adventure.</p>
-    <div class="more">
-        Semuliki is a lowland tropical forest with rich biodiversity, famous for the Sempaya hot springs, birds, monkeys, and unique Congo-like rainforest ecosystem.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Uganda 🐒 Kibale Forest</h3>
-    <p>Chimpanzee capital of the world.</p>
-    <div class="more">
-        Kibale Forest is home to over 1,500 chimpanzees and 13 primate species, offering the best chimp tracking experience in East Africa.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Uganda 🦍 Mgahinga</h3>
-    <p>Golden monkeys & volcanoes.</p>
-    <div class="more">
-        Located in the Virunga mountains, Mgahinga offers gorilla trekking, golden monkey tracking, and hiking the volcanic peaks of Muhabura, Gahinga, and Sabinyo.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-<div class="slide">
-    <h3>Uganda 🦁 Queen Elizabeth</h3>
-    <p>Tree climbing lions & boat cruises.</p>
-    <div class="more">
-        Famous for tree-climbing lions in Ishasha, boat safaris on Kazinga Channel, and elephants, hippos, and buffaloes in large numbers.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Uganda 💦 Murchison Falls</h3>
-    <p>Nile River safari.</p>
-    <div class="more">
-        The Nile River squeezes through a narrow gorge creating powerful waterfalls, surrounded by elephants, lions, and giraffes.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Kenya 🦩 Lake Nakuru</h3>
-    <p>Flamingo paradise.</p>
-    <div class="more">
-        Famous for thousands of flamingos, rhinos, and beautiful lake scenery surrounded by acacia forests.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-<div class="slide">
-    <h3>Kenya 🐘 Maasai Mara</h3>
-    <p>Great Migration safari.</p>
-    <div class="more">
-        One of Africa’s most famous safari destinations, known for the Great Wildebeest Migration and the Big Five wildlife experience.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-<div class="slide">
-    <h3>Kenya 🌄 Amboseli</h3>
-    <p>Views of Mount Kilimanjaro.</p>
-    <div class="more">
-        Famous for large elephant herds with the backdrop of Mount Kilimanjaro, Africa’s highest peak.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Tanzania 🦓 Serengeti</h3>
-    <p>Endless wildlife plains.</p>
 
-    <div class="more">
-        Known for vast savannahs, predator action, and the Great Migration of millions of wildebeests and zebras.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
+<div class="slide">
+<h3>Kenya 🐘 Maasai Mara</h3>
+<p>Great Migration</p>
+<div class="more">Wildebeest migration & Big Five sightings.</div>
+<button onclick="toggleMore(this)">Read More</button>
 </div>
-    <div class="slide">
-    <h3>Tanzania 🐘 Tarangire</h3>
-    <p>Elephant herds & baobab trees.</p>
-    <div class="more">
-        Known for massive elephant herds, ancient baobab trees, and rich wildlife especially during dry seasons.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Tanzania 🌋 Ngorongoro</h3>
-    <p>World’s largest volcanic caldera.</p>
-    <div class="more">
-        A natural wonder filled with lions, rhinos, elephants, and flamingos inside a collapsed volcano crater.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-    <div class="slide">
-    <h3>Rwanda 🦍 Volcanoes</h3>
-    <p>Gorilla trekking experience.</p>
-    <div class="more">
-        Home to endangered mountain gorillas and golden monkeys, with stunning volcanic mountain scenery.
-    </div>
-    <button onclick="toggleMore(this)">Show More</button>
-</div>
-</section>
-<!-- GALLERY SLIDER -->
-<section id="gallery">
-<h2>Safari Gallery</h2>
 
-<div class="slider" id="gallerySlider">
 <div class="slide">
-<img src="3b9198fe-0483-40fa-8c7d-fb7706cdde46.jpeg">
+<h3>Tanzania 🦓 Serengeti</h3>
+<p>Endless plains safari</p>
+<div class="more">Predators, migration, and golden savannahs.</div>
+<button onclick="toggleMore(this)">Read More</button>
 </div>
+
 <div class="slide">
-<img src="36f95f26-015b-4c1b-8a22-cfe14fe0bd13.jpeg">
+<h3>Uganda 💦 Murchison Falls</h3>
+<p>Powerful Nile experience</p>
+<div class="more">Nile squeezing through a narrow gorge.</div>
+<button onclick="toggleMore(this)">Read More</button>
 </div>
+
 <div class="slide">
-<img src="7320a1c5-07e1-46a4-9658-1c8a209a1e8e.jpeg">
+<h3>Kenya 🌄 Amboseli</h3>
+<p>Kilimanjaro views</p>
+<div class="more">Elephants with Africa’s highest mountain backdrop.</div>
+<button onclick="toggleMore(this)">Read More</button>
 </div>
+
+<div class="slide">
+<h3>Rwanda 🦍 Volcanoes</h3>
+<p>Gorilla trekking</p>
+<div class="more">Mountain gorillas in volcanic highlands.</div>
+<button onclick="toggleMore(this)">Read More</button>
+</div>
+
 </div>
 </section>
 
+<!-- GALLERY -->
+<!-- VIDEO SECTION -->
+<section id="videos">
+<h2>Safari Experience Videos</h2>
 
-<!-- SOCIAL -->
-<section class="social-section">
-<h2>Connect With Us</h2>
+<div class="slider" id="videoSlider">
 
-<div class="social-icons">
-    <a href="https://www.facebook.com/profile.php?id=61554350095901&mibextid=eQY6cl" target="_blank" title="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-    </a>
+<div class="slide">
+<iframe width="100%" height="300"
+src="https://www.youtube.com/embed/2Y7f4p7Q5Wc"
+allowfullscreen></iframe>
+</div>
 
-    <a href="https://www.instagram.com/tujje_safaris_?igsh=MXJoczN4eXZrM3UzNg%3D%3D&utm_source=qr" target="_blank" title="Instagram">
-        <i class="fa-brands fa-instagram"></i>
-    </a>
+<div class="slide">
+<iframe width="100%" height="300"
+src="https://www.youtube.com/embed/8ZtInClXe1Q"
+allowfullscreen></iframe>
+</div>
 
-    <a href="https://x.com" target="_blank" title="X (Twitter)">
-        <i class="fa-brands fa-x-twitter"></i>
-    </a>
+<div class="slide">
+<iframe width="100%" height="300"
+src="https://www.youtube.com/embed/6QG5S5q5k3Q"
+allowfullscreen></iframe>
+</div>
 
-    <a href="https://youtube.com" target="_blank" title="YouTube">
-        <i class="fa-brands fa-youtube"></i>
-    </a>
+<div class="slide">
+<iframe width="100%" height="300"
+src="https://www.youtube.com/embed/9R3YbX7c5wQ"
+allowfullscreen></iframe>
+</div>
 
-    <a href="https://wa.me/+256762584996" target="_blank" title="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+<div class="slide">
+<iframe width="100%" height="300"
+src="https://www.youtube.com/embed/1K9G7s0d2xA"
+allowfullscreen></iframe>
+</div>
 
-    <a href="https://www.tiktok.com/@tujje.safaris?_t=8kRsJIGa1RO&_r=1" target="_blank" title="TikTok">
-        <i class="fa-brands fa-tiktok"></i>
-    </a>
+<div class="slide">
+<iframe width="100%" height="300"
+src="https://www.youtube.com/embed/5tZ8mQp3L2Y"
+allowfullscreen></iframe>
+</div>
 
-    <a href="https://linkedin.com" target="_blank" title="LinkedIn">
-        <i class="fa-brands fa-linkedin-in"></i>
-    </a>
 </div>
 </section>
-<!-- FOOTER -->
-<footer>
-<h3>Pearl Dreams Safaris</h3>
-<p>📍 Kampala, Uganda</p>
-<p>📞 +256 770 462 422</p>
 
-<div class="payment">
-
-<h2>Secure Payment Methods</h2>
-
-<div class="payment-icons">
-
-<i class="fab fa-cc-visa"></i>
-
-<i class="fab fa-cc-mastercard"></i>
-
-<i class="fab fa-cc-paypal"></i>
-
-<i class="fab fa-cc-stripe"></i>
-
-<i class="fab fa-google-pay"></i>
-
-<i class="fab fa-apple-pay"></i>
-
-<i class="fas fa-credit-card"></i>
-
-</div>
-
-<p>
-
-We accept Visa, Mastercard, PayPal, Stripe, Apple Pay, Google Pay and all major Debit & Credit Cards for secure online bookings.
-
-</p>
-
-</div>
-
-<div class="copy">
-
-&copy; <span id="year"></span> Tujje Safaris. All Rights Reserved.
-</footer>
-<!-- SCRIPT -->
 <script>
-// ================= SIDEBAR TOGGLE =================
-function toggleMenu(){
-    document.getElementById("sidebar").classList.toggle("open");
-}
-
-// Close sidebar when clicking a link (optional but good UX)
-document.querySelectorAll(".sidebar a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("sidebar").classList.remove("open");
-    });
-});
-
 
 // ================= DESTINATION SLIDER =================
 let d = 0;
@@ -535,19 +316,7 @@ setInterval(() => {
         `translateX(-${g * 100}%)`;
 }, 3500);
 
-
-// ================= READ MORE BUTTON =================
-function toggleMore(btn){
-    let more = btn.previousElementSibling;
-
-    if(more.style.display === "block"){
-        more.style.display = "none";
-        btn.innerText = "Read More";
-    } else {
-        more.style.display = "block";
-        btn.innerText = "Show Less";
-    }
-}
 </script>
+
 </body>
 </html>
