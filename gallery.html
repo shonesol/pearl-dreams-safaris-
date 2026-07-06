@@ -1,408 +1,404 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pearl dreams safaris</title>
 
-<title>Pearl Dreams Safaris Video Gallery</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 
+/* ===== BASE ===== *//* ===== BASE ===== */
 *{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
 }
 
 body{
-
-    font-family:Arial, sans-serif;
-
-    background:linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
-
-    url('https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1600');
-
-    background-size:cover;
-
-    background-position:center;
-
-    background-attachment:fixed;
-
-    color:white;
-
-    min-height:100vh;
-
+background:#F5F5DC;
+color:#111111;
 }
 
+/* ===== HEADER ===== */
+/* ===== HEADER ===== */
 header{
+    background:linear-gradient(90deg,#2E7D32,#111111);
+    padding:10px 20px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
 
-    text-align:center;
+.header-content{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:15px;
+}
 
-    padding:40px 20px;
-
-    background:rgba(0,0,0,0.5);
-
-    backdrop-filter:blur(5px);
-
+.logo-img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
 }
 
 header h1{
-
-    font-size:2.5rem;
-
-    color:#FFD700;
-
+    color:#F8F8FF;
+    font-size:28px;
+    margin:0;
+    font-weight:700;
 }
 
-header p{
-
-    margin-top:10px;
-
-    color:#ddd;
-
+.logo-img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
-.back-btn{
+/* ===== HERO SLIDER ===== */
+.hero-slider{
+    width:100%;
+    height:70vh;
+    min-height:500px;
+    background-image:url("8ce977a4-f6bb-4c78-8114-cee0a961f662.jpeg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
 
+.hero-slider::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:#F8F8FF;
+    padding:20px;
+}
+
+.hero-content h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.hero-content p{
+    font-size:1.2rem;
+    margin-bottom:25px;
+}
+
+.hero-btn{
     display:inline-block;
-
-    margin:20px;
-
-    padding:12px 24px;
-
-    background:#0f766e;
-
-    color:white;
-
+    padding:14px 30px;
+    background:#2E7D32;
+    color:#F8F8FF;
     text-decoration:none;
-
     border-radius:30px;
-
     font-weight:bold;
-
-    transition:0.3s;
-
+    transition:.3s;
 }
 
-.back-btn:hover{
-
-    background:#14b8a6;
-
-    transform:translateY(-3px);
-
+.hero-btn:hover{
+    background:#111111;
 }
 
-.gallery{
+/* ===== SECTION ===== */
+section{
+padding:60px 20px;
+}
 
-    display:grid;
+.title{
+text-align:center;
+color:#2E7D32;
+font-size:32px;
+margin-bottom:20px;
+}
 
-    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+/* ===== GRID ===== */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+max-width:1100px;
+margin:auto;
+}
 
-    gap:25px;
+.card{
+background:#F8F8FF;
+padding:20px;
+border-radius:10px;
+border-left:5px solid #C9A227;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
 
-    padding:30px;
+/* ===== FORM ===== */
+form{
+max-width:600px;
+margin:auto;
+background:#F8F8FF;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
 
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+font-weight:800;
+color:#F8F8FF;
+background:linear-gradient(90deg,#2E7D32,#111111);
+cursor:pointer;
+}
+
+/* ===== SOCIAL ===== */
+.social-icons{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:18px;
+margin-top:35px;
+}
+
+.social-icons a{
+width:50px;
+height:50px;
+display:flex;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+border-radius:50%;
+background:#2E7D32;
+color:#F8F8FF;
+font-size:22px;
+transition:.3s ease;
+}
+
+.social-icons a:hover{
+background:#111111;
+color:#C9A227;
+transform:translateY(-5px);
+}
+
+/* ===== FOOTER ===== */
+footer{
+background:grey;
+color:#F8F8FF;
+padding:40px;
+text-align:center;
+}
+
+/* VIDEO SECTION */
+.video-section{
+padding:70px 5%;
+background:linear-gradient(180deg,#F5F5DC,#F8F8FF);
+}
+
+.video-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
+max-width:1200px;
+margin:auto;
 }
 
 .video-card{
-
-    background:rgba(255,255,255,0.08);
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    backdrop-filter:blur(10px);
-
-    box-shadow:0 10px 30px rgba(0,0,0,.4);
-
-    transition:0.4s;
-
-}
-
-.video-card:hover{
-
-    transform:translateY(-8px);
-
+position:relative;
+background:#F8F8FF;
+border-radius:18px;
+overflow:hidden;
+border:2px solid #C9A227;
+box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
 .video-card video{
-
-    width:100%;
-
-    display:block;
-
-    background:black;
-
-    border-bottom:2px solid #FFD700;
-
+width:100%;
+height:240px;
+object-fit:cover;
+display:block;
 }
 
 .video-info{
-
-    padding:15px;
-
+background:#111;
+color:#fff;
+padding:15px;
 }
 
 .video-info h3{
-
-    color:#FFD700;
-
-    margin-bottom:8px;
-
+color:#C9A227;
 }
 
-.video-info p{
-
-    color:#ddd;
-
-    font-size:14px;
-
-    line-height:1.5;
-
+.video-card::before{
+content:"▶ LIVE SAFARI";
+position:absolute;
+top:10px;
+left:10px;
+background:#2E7D32;
+color:#fff;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
 }
 
-@media(max-width:768px){
-
-    .gallery{
-
-        grid-template-columns:1fr;
-
-        padding:15px;
-
-    }
-
-    header h1{
-
-        font-size:2rem;
-
-    }
-
+/* RESPONSIVE */
+@media (max-width:768px){
+footer{
+padding:40px 20px;
+}
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-    <h1>🎥 Pearl Dreams Safaris Gallery</h1>
-
-    <p>Experience Uganda Through Our Safari Adventures</p>
-
+<h1>PEARL DREAMS SAFARIS</h1>
 </header>
 
-<a href="index.html" class="back-btn">← Back Home</a>
+<section class="hero-slider">
+<div class="hero-content">
+<h1>Discover Nature</h1>
+<p>Crafting unforgettable safari experiences</p>
+<a class="hero-btn" href="#">Explore Tours</a>
+</div>
+</section>
 
-<div class="gallery">
+<!-- VIDEO SECTION ADDED -->
+<section class="video-section">
+<h2 class="title">Safari Video Experience</h2>
 
-    <div class="video-card">
+<div class="video-grid">
 
-        <video controls preload="metadata">
-
-            <source src="03a8877bfb5e4523a8156d2e6f14aa6b.mov" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Gorilla Trekking Adventure</h3>
-
-            <p>Meet the endangered mountain gorillas in Bwindi Impenetrable Forest.</p>
-
-        </div>
-
-    </div>
 
     <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="433bbc27-07a0-41da-87f8-59f9f832e1a6.mov">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    
+<div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    
     <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="c5c740ef-e014-4679-ae05-3e66ca790284.mp4" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Game Drive Adventure</h3>
-
-            <p>Explore national parks in our comfortable safari Land Cruisers.</p>
-
-        </div>
-
-    </div>
-        <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="03dca837-6912-4135-8a0d-689c8e542619.mov">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-    <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="438b09b3-fcfc-4063-8ad7-4dbefec461ed.mov" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-    <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="4585385d-ce57-4d7b-a806-44c9206ba18b.mov" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-    <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="699fcbe8-8465-4745-a641-ddc0854f4f53.mov" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-    <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="b5d8c621-9200-4f56-991d-7672b4cbefd9.mov" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-    <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="f334ad22-fe8a-44dc-a1c5-7d632da6444c.mov" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Wildlife Safari Experience</h3>
-
-            <p>Discover Uganda's incredible wildlife and breathtaking landscapes.</p>
-
-        </div>
-
-    </div>
-
-
-    <div class="video-card">
-
-        <video controls preload="metadata">
-
-            <source src="ce034acf-d338-4311-af36-b5aae88861a4.mp4" type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-        <div class="video-info">
-
-            <h3>Murchison Falls Experience</h3>
-
-            <p>Witness the power and beauty of Uganda's most famous waterfall.</p>
-
-        </div>
-
-    </div>
-
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
 </div>
 
-</body>
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
 
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+    <div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video1.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Gorilla Trekking</h3>
+</div>
+</div>
+<div class="video-card">
+<video autoplay muted loop playsinline preload="auto">
+<source src="video2.mp4" type="video/mp4">
+</video>
+<div class="video-info">
+<h3>Game Drives</h3>
+</div>
+</div>
+
+</div>
+</section>
+
+</body>
 </html>
